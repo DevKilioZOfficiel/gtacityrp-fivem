@@ -1,0 +1,138 @@
+/* Aucune optimisation */
+
+body{
+    margin: 0;
+    background: #142132;
+    background-repeat: no-repeat;
+    color:#FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100xw;
+    height: 100vh;
+    vertical-align: middle;
+    user-select: none;
+    animation: changeOppacity 1s;
+    transition: all 1s ease-in-out;
+}
+
+.content{
+    width: 450px;
+    height: 616px;
+    flex-shrink: 0;
+}
+
+.sub{
+    display: inline-flex;
+    padding: 0px 30px 30px 30px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(5px);
+}
+
+.logo{
+    width: 164px;
+    height: 164px;
+    flex-shrink: 0; 
+}
+
+.title{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 27.833px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+.connexion{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25.833px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal; 
+}
+
+input{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    opacity: 0.25;
+    display: flex;
+    width: 390px;
+    padding: 13px 0px 13px 13px;
+    align-items: center;
+    border-radius: 10px;
+    border:#211C1C;
+    background: #211C1C; 
+}
+
+.auth{
+    display: flex;
+    width: 390px;
+    padding: 19px 0px 18px 0px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #FFF;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.reset{
+    display: flex;
+    padding: 6px 19px;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.35);
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border:#767e87;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    gap: 19px;
+    opacity: 0.5;
+}
+
+.info-text{
+    width: 314px;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+@keyframes changeOppacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

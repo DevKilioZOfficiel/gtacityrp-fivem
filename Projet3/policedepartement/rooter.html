@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/new_styles.css" > 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            screens: {
+              'sm': '640px',
+              'md': '768px',
+              'lg': '1024px',
+              'xl': '1560px',
+              '2xl': '1760px',
+            },
+            extend: {
+              colors: {
+                'background': 'rgb(96,96,138)',
+                'neon-color': '#1092ee',
+                'gtacity-bleu-nuit': '#282434',
+                'gtacity-bleu-nuit2': '#271950',
+                'gtacity-bleu-corporate': '#005FA5',
+                'gtacity-bleu-corporate-locked': 'rgb(0 95 165 / 30%)',
+                'gtacity-bleu-corporate2': '#00487D',
+                'gtacity-bleu-corporate2-locked': 'rgb(0 72 125 / 30%)',
+                'gtacity-bleu-tiers': '#0B0B4D',
+                'gtacity-bleu-tiers2': '#191970',
+                'gtacity-selected-profile': '#5fa8df',
+                'gtacity-vip-profile-head': '#f6b93b',
+                'gtacity-vip-profile-head-locked': 'rgb(246 185 59 / 30%)',
+                'gtacity-vip-profile': '#fdcb6e',
+                'gtacity-vip-profile-selected': '#dabb0b',
+                'gtacity-bleu1': 'rgb(96,96,138)',
+                'gtacity-bleu2': 'rgb(20,33,50)',
+              }
+           }
+          }
+      }
+      </script>
+    
+    <script src="assets/fontawesome/v6.4.0/all.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</head>
+<body class="pt-[52px] 2xl:pt-[89px]">
+    
+    <div class="header flex items-center justify-between p-4  border-yellow-400 bg-opacity-10 backdrop-blur-md">
+        <img src="assets/img/icon.png" class="logo w-24 h-24" alt="LA City Logo">
+    
+        <div class="nav hidden lg:flex space-x-4 mb-6">
+            <!-- DESKTOP ACTIVE: btn-active (retirer btn-active si non activé)-->
+            <a href="index.html" class="btn">Accueil</a>
+            <a href="rooter.html" class="btn btn-active">MDT</a>
+            <a href="citoyens.html" class="btn">Fiche citoyens</a>
+            <a href="rapports.html" class="btn">Rapports</a>
+            <a href="recherches.html" class="btn">Recherches</a>
+            <a href="map.html" class="btn">Map</a>
+            <a href="demandes.html" class="btn">Port d'arme</a>
+        </div>
+    
+        <div class="motto text-right ml-auto">
+            <p class="title">
+                LA Police Department<br>
+                <span class="sub-title">“To Protect and To Serve”</span>
+            </p>
+        </div>
+    
+        <div class="lg:hidden flex">
+            <button id="mobile-menu-button" class="btn text-white">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div id="mobile-menu" class="lg:hidden hidden mt-12 bg-[#2c3847] rounded-xl">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <a href="index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Accueil</a>
+            <a href="rooter.html" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium">MDT</a>
+            <a href="citoyens.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Fiches citoyens</a>
+            <a href="rapports.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Rapports</a>
+            <a href="recherches.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Recherches</a>
+            <a href="map.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Map</a>
+            <a href="demandes.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Port d'arme</a>
+          </div>
+    </div>
+    
+
+    <div class="account pt-5">
+        <p class="welcome">Bienvenue, <span class="username">John Doe</span></p>
+        
+        <div class="actions">
+            <button class="profil-btn">Mon profil</button>
+            <button class="logout-btn">Déconnexion</button>
+        </div>
+    </div>
+
+    <!-- Contenu du modal des officiers -->
+    <div class="modal fixed inset-0 flex items-center justify-center overflow-auto z-10 hidden" id="modal-officers">
+        <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-50"></div>
+        <div class="modal-container modal-border bg-[#1F3147] w-[75%] max-h-[90%] rounded-lg shadow-lg z-20 overflow-auto">
+          <div class="modal-content py-4 px-6 overflow-auto">
+            <div class="flex items-center justify-between">
+                <h2 class="w-full text-xl text-white font-bold mb-4 text-center">Ajouter un officier au rooter</h2>
+                <span class="inline right-0 modal-close pb-[20px]"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+            </div>              
+            <!-- Mettez ici le contenu du modal -->
+            <input type="text" class="gtacity-input flex w-full h-[40px] text-center mb-4" id="search" placeholder="Rechercher un officier par identité ou matricule...">
+
+            <div class="grid grid-cols-3 gap-4 justify-center" id="officers_list">
+            <!-- EXEMPLE -->
+                <div class="col-span-1">
+                    <div class="p-1 m-1 gtacity-officers-list">
+                        <div class="grid grid-cols-12">
+                            <div class="col-span-2">
+                                <img class="gtacity-officer-icon" src="assets/img/ranks/image.png">
+                            </div>
+                            <div class="col-span-8 ml-2 mr-2">
+                                <h5 class="font-bold">NOM Prénom</h5>
+                                <p>Matricule</p>
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex h-[45px] items-center justify-center">
+                                    <img class="" src="assets/img/ranks/chief.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN EXEMPLE -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Fin du contenu du modal des officiers -->
+
+    <!-- Contenu du modal des véhicules -->
+    <div class="modal fixed inset-0 flex items-center justify-center overflow-auto z-10 hidden" id="modal-cars">
+        <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-50"></div>
+        <div class="modal-container modal-border bg-[#1F3147] w-[75%] max-h-[90%] rounded-lg shadow-lg z-20 overflow-auto">
+          <div class="modal-content py-4 px-6 overflow-auto">
+            <div class="flex items-center justify-between">
+                <h2 class="w-full text-xl text-white font-bold mb-4 text-center">Ajouter un véhicule au rooter</h2>
+                <span class="inline right-0 modal-close pb-[20px]"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+            </div>              
+            <!-- Mettez ici le contenu du modal -->
+            <input type="text" class="gtacity-input flex w-full h-[40px] text-center mb-4" id="search" placeholder="Rechercher un véhicule...">
+
+            <div class="grid grid-cols-3 gap-4 justify-center" id="officers_list">
+            <!-- EXEMPLE -->
+                <div class="col-span-1">
+                    <div class="p-1 m-1 gtacity-officers-list">
+                        <div class="grid grid-cols-12">
+                            <div class="col-span-2">
+                                <img class="gtacity-officer-icon" src="assets/img/ranks/image.png">
+                            </div>
+                            <div class="col-span-10 ml-2 mr-2">
+                                <h5 class="font-bold">Voiture</h5>
+                                <p>Modifier l'image de gauche en véhicule SVP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN EXEMPLE -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Fin du contenu du modal des officiers -->
+
+    <main class="overflow-auto w-full max-h-[65vh] min-h-[20vh] 2xl:max-h-[60vh] 2xl:min-h-[20vh]">
+        <div class="modal flex fixed bottom-[170px] right-[90px] 2xl:bottom-[220px] 2xl:right-[150px] gtacity-notification-container gtacity-notification-container-content bottom-0 overflow-auto z-10 hidden mr-[20px] max-h-[80%]" id="notifications">
+            <div class="flex items-center justify-between">
+                <h2 class="w-full text-md text-white font-bold mb-1 mt-1 text-center">Notifications</h2>
+                <span class="absolute inline right-[13px] modal-close"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+            </div>    
+
+            <div class="overflow-auto" id="notifications-list">
+                <!-- EXEMPLE DE NOTIFICATION -->
+                <div class="mb-2 gtacity-notification-content">
+                    <div class="p-5 text-white relative flex w-full h-full flex-col rounded-xl shadow-md">
+                        <h5 class="mb-2 block text-[12px] font-bold text-white">
+                            <span id="user" class="opacity-50 text-[16px]">Direction</span>
+                            <span id="date" class="opacity-50 text-[14px] text-right right-date">13:45 03 août 2023</span>
+                        </h5>
+                        <p id="content" class="gtacity-content text-[11px]">
+                            Lorem ipsum dolor sit amet consectetur. Urna odio lectus cursus cursus. In at id gravida at senectus. Suspendisse nulla mattis consequat netus pellentesque feugiat in dignissim. Sem tempus neque nec egestas malesuada tempus sollicitudin et scelerisque. Commodo eget viverra convallis dignissim egestas.
+                        </p>
+                    </div>
+                </div>
+                <!-- FIN EXEMPLE DE NOTIFICATION -->
+            </div>
+        </div>
+
+        <div class="fixed bottom-[70px] right-[90px] 2xl:bottom-[120px] 2xl:right-[150px] text-white px-4 py-2 rounded-md modal-open" data-modal-target="notifications">
+            <div class="gtacity-notifications-bell-icon">
+                <div class="flex items-center justify-center bg-no-repeat bg-center bg-cover p-[20px] m-[10px]" style="background-image: url('assets/img/bell.png');">
+                    <div class="relative">
+                      <div id="count_list" style="/* font-weight: 700; */" class="gtacity-notification-count absolute right-0 text-white rounded-full w-[20px] h-[20px]">
+                        1
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto py-6 sm:px-6 lg:px-8 pt-[55px]">
+          
+            <div class="mx-4 grid grid-cols-12 gap-4">
+                <div class="col-span-12">
+                    <div class="gtacity-menu relative top-[25px]">
+                        <svg style="border-top-left-radius: 10px;" xmlns="http://www.w3.org/2000/svg" width="91" height="23" viewBox="0 0 91 21" fill="none">
+                            <g filter="url(#filter0_d_190_5872)">
+                              <path d="M0 0V19H82L58 0H0Z" fill="#FFCB04"/>
+                              <text x="10" y="15" font-family="Arial" font-size="12" fill="black" class="font-bold">Rooter</text>
+                            </g>
+                            <defs>
+                              <filter id="filter0_d_190_5872" x="-1" y="-5" width="92" height="29" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="4"/>
+                                <feGaussianBlur stdDeviation="2.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_190_5872"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_190_5872" result="shape"/>
+                              </filter>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <table class="bg-[#FFCB04] w-full gtacity-item overflow-hidden sm:shadow-lg my-5 mb-8">
+                        <thead class="text-white">
+                            <tr class="gtacity-borders-primary flex flex-col flex-no wrap sm:table-row gtacity-rounded sm:rounded-none mb-2 sm:mb-0">
+                                <th class="gtacity-borders p-3 text-center">Rang unit.</th>
+                                <th class="gtacity-borders p-3 text-center">Type d'unité</th>
+                                <th class="gtacity-borders p-3 text-center">Officiers</th>
+                                <th class="gtacity-borders p-3 text-center">Véhicule attribué</th>
+                                <th class="gtacity-borders p-3 text-center">Localisation</th>
+                                <th class="gtacity-borders p-3 text-center">Disponibilité</th>
+                                <th class="gtacity-borders p-3 text-center">Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody class="flex-1 sm:flex-none">
+                            <!-- EXEMPLE ROOTER A RECUPERER -->
+                            <tr class="gtacity-item-table flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                                <td class="gtacity-borders p-3 text-center" id="rang">10</td>
+                                <td class="gtacity-borders p-3 text-center" id="type">
+                                    <span class="dropdown-toggle">
+                                        Adam
+                                        <svg class="gtacity-svg-dropdown" xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5" fill="none">
+                                            <path d="M2.36964 4.77817L0.215925 1.70143C-0.0856383 1.27062 0.222561 0.678676 0.748426 0.678676L4.75157 0.678676C5.27744 0.678676 5.58564 1.27062 5.28407 1.70143L3.13036 4.77817C2.94552 5.04221 2.55448 5.04221 2.36964 4.77817Z" fill="#FFCB04"/>
+                                        </svg>
+                                    </span>
+                                        
+                                      <div class="absolute mb-5 mt-2 w-56 rounded-md shadow-lg bg-[#334A69] ring-1 ring-black ring-opacity-5 hidden dropdown-menu z-10">
+                                        <ul class="py-1 rounded-xl" role="menu" aria-orientation="vertical">
+                                          <!-- Mettez ici les options du dropdown -->
+                                          <li><span class="block px-4 py-2 text-sm text-white hover:text-[#FFCB04] gtacity-unity-selector" role="menuitem">Option 1</span></li>
+                                          <li><span class="block px-4 py-2 text-sm text-white hover:text-[#FFCB04] gtacity-unity-selector" role="menuitem">Option 2</span></li>
+                                          <li><span class="block px-4 py-2 text-sm text-white hover:text-[#FFCB04] gtacity-unity-selector" role="menuitem">Option 3</span></li>
+                                        </ul>
+                                      </div>
+                                </td>
+                                <td class="gtacity-borders p-3 text-center" id="officers"><span class="gtacity-matricule font-bold">MROZEK Mateo - Cadet</span> <span class="modal-open" data-modal-target="modal-officers"><i class="fa-solid fa-plus"></i></span> </td>
+                                <td class="gtacity-borders p-3 text-center" id="car"><span class="gtacity-matricule font-bold">Voiture <i class="fa-solid fa-xmark text-red-600" id="remove_car"></i></span> <span class="modal-open" data-modal-target="modal-cars"><i class="fa-solid fa-plus"></i></span></td>
+                                <td class="gtacity-borders p-3 text-center" id="Localisation">{{ Localisation }}</td>
+                                <td class="gtacity-borders p-3 text-center" id="available">Disponible</td>
+                                <td class="gtacity-borders p-3 text-center" id="number">10-23</td>
+                            </tr>
+                            <!-- FIN EXEMPLE ROOTER A RECUPERER -->
+                            
+                        </tbody>
+                    </table>
+
+
+                    <div class="gtacity-menu  relative top-[55px]">
+                        <svg style="border-top-left-radius: 10px;" xmlns="http://www.w3.org/2000/svg" width="139" height="21" viewBox="0 0 139 21" fill="none">
+                                <g filter="url(#filter0_d_403_8815)">
+                                    <path d="M0 0V19H130L109.5 0H0Z" fill="#FFCB04"/>
+                                    <text x="10" y="15" font-family="Arial" font-size="12" fill="black" class="font-bold">Call Dispatch</text>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_403_8815" x="-1" y="-5" width="140" height="29" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dx="4"/>
+                                    <feGaussianBlur stdDeviation="2.5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_403_8815"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_403_8815" result="shape"/>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="bg-[#FFCB04] w-full gtacity-item overflow-hidden sm:shadow-lg my-5 mb-8 mt-[51px]">
+                        <div class="grid grid-cols-12 gap-4 gtacity-item-table">
+                            <div class="col-span-6 w-[100%] gtacity-item-table">
+                                <div class="grid grid-cols-12 gap-4 gtacity-item-table" id="dispatch_list">
+                                    <!-- DEBUT EXEMPLE CONTENU A RECUPERER -->
+
+                                    <!-- DOCUMENTATION AUX DEVELOPPEURS LUA
+                                    Pour chaque modal dans cette liste a "duppliquer". Veuillez bien modifier les data-modal-target. Pour cet exemple, l'id par défaut est "-1".
+                                    Veuillez faire en sorte que chaque élément ai leurs propre ID. Vous devez jouer avec data-modal-target ET les id des modals 
+                                    (Exemple: Modal: id="modal-acceptcall-1" pour le bouton data-modal-target="modal-acceptcall-1")
+                                    
+                                    -->
+                                    <div class="col-span-12 md:col-span-6 mt-4 mx-4 w-full mb-5">
+                                        <div class="relative flex w-full h-full flex-col rounded-xl gtacity-dispatch bg-clip-border text-gray-700 shadow-md">
+                                            <div class="p-3">
+                                                <h5 class="mb-2 block font-sans text-lg font-semibold leading-snug tracking-normal text-white antialiased">
+                                                    <span class="text-sm font-bold gtacity-dispatch-number" id="id_call">#1</span>
+                                                    <span class="text-sm font-bold gtacity-dispatch-number2" id="number_call">10-31</span>
+                                                    <span id="type_call">Tirs d’arme à feu</span>
+                                                </h5>
+                                                <p class="block font-sans text-white text-base font-semibold leading-relaxed text-inherit antialiased">
+                                                    <i class="fa-solid fa-stopwatch"></i> <span id="time_call">Maintenant</span><br>
+                                                    <i class="fa-solid fa-map-location-dot"></i> <span id="localisation_call">Vespucci Boulevard</span>
+                                                </p>
+                                                <div class="grid grid-cols-1">
+                                                    <div class="flex pt-3">
+                                                        <button type="button" class="m-2 inline gtacity-dispatch-button font-bold text-white modal-open" data-modal-target="modal-acceptcall-1">Prendre l'appel</button>
+                                                        <button type="button" class="m-2 inline gtacity-dispatch-button-refuse font-bold text-white modal-open" data-modal-target="modal-removecall-1">Refuser l'appel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fixed inset-0 flex items-center justify-center overflow-auto z-10 hidden" id="modal-acceptcall-1">
+                                        <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-50"></div>
+                                        <div class="modal-container modal-border bg-[#1F3147] w-[75%] max-h-[90%] rounded-lg shadow-lg z-20 overflow-auto">
+                                          <div class="modal-content py-4 px-6 overflow-auto">
+                                            <div class="flex items-center justify-between">
+                                                <h2 class="w-full text-2xl text-white font-bold mb-4 text-center">Répondre à un appel 911</h2>
+                                                <span class="inline right-0 modal-close pb-[20px]"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+                                            </div>              
+                                            <!-- Mettez ici le contenu du modal -->
+                                            <h3 class="w-full text-sm text-white font-bold mb-4 text-center">Êtes-vous sûr de prendre cet appel ?</h3>
+                                            <div class="grid grid-cols-1">
+                                                <div class="flex pt-3 items-center justify-center">
+                                                    <a href="__modal_map.html" class="m-2 inline gtacity-acceptcall font-bold text-white modal-open text-center">Prendre l'appel</a>
+                                                    <button type="button" class="m-2 inline gtacity-cancel-btn font-bold text-white modal-close">Annuler</button>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fixed inset-0 flex items-center justify-center overflow-auto z-10 hidden" id="modal-removecall-1">
+                                        <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-50"></div>
+                                        <div class="modal-container modal-border bg-[#1F3147] w-[75%] max-h-[90%] rounded-lg shadow-lg z-20 overflow-auto">
+                                          <div class="modal-content py-4 px-6 overflow-auto">
+                                            <div class="flex items-center justify-between">
+                                                <h2 class="w-full text-2xl text-white font-bold mb-4 text-center">Supprimer un appel</h2>
+                                                <span class="inline right-0 modal-close pb-[20px]"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+                                            </div>              
+                                            <!-- Mettez ici le contenu du modal -->
+                                            <h3 class="w-full text-sm text-white font-bold mb-4 text-center">Êtes-vous sûr de supprimer cet appel 911 ?</h3>
+                                            <div class="grid grid-cols-1">
+                                                <div class="flex pt-3 items-center justify-center">
+                                                    <button type="button" class="m-2 inline gtacity-removecall font-bold text-white modal-close">Supprimer l’appel</button>
+                                                    <button type="button" class="m-2 inline gtacity-cancel-btn font-bold text-white modal-close">Annuler</button>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- FIN EXEMPLE -->
+                                </div>
+                                
+                            </div>
+                            <div class="col-span-6 w-[100%] gtacity-border-left gtacity-item-table">
+                                <h2 class="gtacity-communications text-center pt-5">Communication interne</h2>
+
+                                <div class="grid grid-cols-12 gap-4 gtacity-item-table" id="communication_interne">
+                                    <!-- EXEMPLE A GAUCHE -->
+                                    <div class="col-span-12 md:col-span-12 mt-4 mx-4 w-[60%] md:w-[75%] mb-5">
+                                        <div class="p-5 text-white relative flex w-full h-full flex-col rounded-xl gtacity-communication-left bg-clip-border shadow-md">
+                                            <h5 class="mb-2 block text-base font-semibold text-white">
+                                                <span id="user" class="opacity-50">Jarod Ross - Cadet</span>
+                                                <span id="date" class="opacity-50 text-right right-date">20:00 31 juillet 2023</span>
+                                            </h5>
+                                            <p id="content" class="gtacity-content">
+                                                Lorem ipsum dolor sit amet consectetur. Urna odio lectus cursus cursus. In at id gravida at senectus. Suspendisse nulla mattis consequat netus pellentesque feugiat in dignissim. Sem tempus neque nec egestas malesuada tempus sollicitudin et scelerisque. Commodo eget viverra convallis dignissim egestas.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- FIN EXEMPLE A GAUCHE -->
+                                    <!-- EXEMPLE A DROITE -->
+                                    <div class="col-span-12 md:col-span-12 mt-4 mx-4 w-[60%] md:w-[75%] mb-5 justify-self-end pr-5">
+                                        <div class="p-5 text-white relative flex w-full h-full flex-col rounded-xl gtacity-communication-right bg-clip-border shadow-md">
+                                            <h5 class="mb-2 block text-base font-semibold text-white">
+                                                <span id="user" class="opacity-50">MROZEK Mateo - Cadet</span>
+                                                <span id="date" class="opacity-50 text-right right-date">20:01 31 juillet 2023</span>
+                                            </h5>
+                                            <p id="content" class="gtacity-content">
+                                                Lorem ipsum dolor sit amet consectetur. Urna odio lectus cursus cursus. In at id gravida at senectus. Suspendisse nulla mattis consequat netus pellentesque feugiat in dignissim. Sem tempus neque nec egestas malesuada tempus sollicitudin et scelerisque. Commodo eget viverra convallis dignissim egestas.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- FIN EXEMPLE A DROITE -->
+                                </div>
+                                <input type="text" id="citizen" class="gtacity-input w-custom flex h-[40px] text-left font-bold m-4 w-[95%] p-4" placeholder="Que voulez-vous dire ?">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+            </div>
+
+        </div>
+      </main>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const mobileMenuButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            mobileMenuButton.addEventListener("click", function() {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // Fermer le menu mobile lors du clic en dehors du menu
+            window.addEventListener("click", function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+    
+          const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+      
+          dropdownToggles.forEach((toggle) => {
+            const dropdownMenu = toggle.nextElementSibling;
+      
+            toggle.addEventListener('click', function () {
+              if (dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.remove('hidden');
+                createPopper(toggle, dropdownMenu, {
+                  placement: 'bottom-start',
+                });
+              } else {
+                dropdownMenu.classList.add('hidden');
+              }
+            });
+      
+            document.addEventListener('click', function (event) {
+              if (!toggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+              }
+            });
+          });
+
+          const modalOpenButtons = document.querySelectorAll('.modal-open');
+    const modalCloseButtons = document.querySelectorAll('.modal-close');
+
+    modalOpenButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const modalId = button.getAttribute('data-modal-target');
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      });
+    });
+
+    modalCloseButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const modal = button.closest('.modal');
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      });
+    });
+
+    // Ferme le modal lorsque l'utilisateur clique en dehors du modal
+    document.addEventListener('click', function (event) {
+      modalOpenButtons.forEach((button) => {
+        const modalId = button.getAttribute('data-modal-target');
+        const modal = document.getElementById(modalId);
+        if (!modal.contains(event.target) && !button.contains(event.target)) {
+          modal.classList.add('hidden');
+        }
+      });
+    });
+  });
+      </script>
+      
+
+      
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Loading</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/styles.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style type="text/tailwindcss">
+        body {
+            @apply bg-no-repeat text-white flex flex-col justify-center items-center w-[100xw] h-screen align-middle select-none animate-[changeOppacity_1s] transition-all duration-[1s] ease-[ease-in-out] m-0;
+            background: #142132;
+        }
+        .content {
+            @apply h-auto;
+        }
+        .header {
+            @apply flex items-center gap-[40.831px] pr-0;
+        }
+        .loading {
+            @apply flex flex-col justify-center items-center gap-[45px] backdrop-blur-[5px] mt-[51px] px-10 py-[30px] rounded-[15px] border-2 border-solid border-[rgba(255,255,255,0.25)];
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .title {
+            @apply text-center text-[23px] not-italic font-black leading-[normal];
+            font-family: Montserrat;
+            margin: 0;
+        }
+        .logo {
+            @apply shrink-0;
+        }
+        .load-logo {
+            @apply w-[55.851px] h-[55.851px];
+        }
+        .load-header {
+            @apply flex justify-center items-center gap-[25.649px] pl-0;
+        }
+        .connexion-text {
+            @apply text-[20.721px] not-italic font-extrabold leading-[normal] mt-[25px];
+            font-family: Montserrat;
+        }
+        .load-content {
+            @apply flex w-[279px] flex-col justify-center items-start gap-[-0.118px];
+        }
+        .load-title {
+            @apply text-center text-[18.235px] not-italic font-bold leading-[normal];
+            font-family: Montserrat;
+        }
+        .load-subtitle {
+            @apply text-center text-[10px] not-italic font-medium leading-[normal];
+            font-family: Montserrat;
+        }
+        .info {
+            @apply flex items-center gap-[19px] opacity-50;
+        }
+        .icon {
+            @apply w-[13.263px] h-3.5;
+        }
+        .info-text {
+            @apply w-[314px] text-white text-center text-[10px] not-italic font-semibold leading-[normal];
+            font-family: Montserrat;
+        }
+        @keyframes rotateImage {
+            from {
+                @apply rotate-0;
+            }
+            to {
+                @apply rotate-[360deg];
+            }
+        }
+        @keyframes changeOppacity {
+            from {
+                @apply opacity-0;
+            }
+            to {
+                @apply opacity-100;
+            }
+        }
+  </style>
+</head>
+
+<body>
+
+    <div class="content">
+
+        <div class="header">
+            <img class="logo-loading" src="assets/img/LA City Logo.svg" alt="LA City Logo" />
+            <p class="title">Ville de Los Angeles<br><span class="connexion-text">Connexion</span></p>
+        </div>
+
+        <div class="loading">
+            <div class="load-header">
+                <img class="load-logo" src="assets/img/Loader anim.png" alt="Loader anim">
+
+                  <div class="load-content">
+                      <span class="load-title">Connexion à votre compte...</span>
+
+                      <span class="load-subtitle">Cela peut prendre quelques secondes</span>
+                  </div>
+
+              </div>
+
+              <div class="info">
+                  <img class="icon" src="assets/img/Icon Lock.svg" alt="Icon Lock">
+                  <span class="info-text">Formulaire de connexion dédié aux agents de la ville (police, pompiers, hopitaux). Son accès est limité et sécurisé.</span>
+              </div>
+        </div>
+    </div>
+</body>
+</html>

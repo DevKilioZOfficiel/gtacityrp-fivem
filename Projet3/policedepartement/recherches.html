@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/new_styles.css" > 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            screens: {
+              'sm': '640px',
+              'md': '768px',
+              'lg': '1024px',
+              'xl': '1560px',
+              '2xl': '1760px',
+            },
+            extend: {
+              colors: {
+                'background': 'rgb(96,96,138)',
+                'neon-color': '#1092ee',
+                'gtacity-bleu-nuit': '#282434',
+                'gtacity-bleu-nuit2': '#271950',
+                'gtacity-bleu-corporate': '#005FA5',
+                'gtacity-bleu-corporate-locked': 'rgb(0 95 165 / 30%)',
+                'gtacity-bleu-corporate2': '#00487D',
+                'gtacity-bleu-corporate2-locked': 'rgb(0 72 125 / 30%)',
+                'gtacity-bleu-tiers': '#0B0B4D',
+                'gtacity-bleu-tiers2': '#191970',
+                'gtacity-selected-profile': '#5fa8df',
+                'gtacity-vip-profile-head': '#f6b93b',
+                'gtacity-vip-profile-head-locked': 'rgb(246 185 59 / 30%)',
+                'gtacity-vip-profile': '#fdcb6e',
+                'gtacity-vip-profile-selected': '#dabb0b',
+                'gtacity-bleu1': 'rgb(96,96,138)',
+                'gtacity-bleu2': 'rgb(20,33,50)',
+              }
+           }
+          }
+      }
+      </script>
+    
+    <script src="assets/fontawesome/v6.4.0/all.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</head>
+<style>
+</style>
+<body class="pt-[52px] 2xl:pt-[89px]">
+    
+    <div class="header flex items-center justify-between p-4  border-yellow-400 bg-opacity-10 backdrop-blur-md">
+        <img src="assets/img/icon.png" class="logo w-24 h-24" alt="LA City Logo">
+    
+        <div class="nav hidden lg:flex space-x-4 mb-6">
+            <!-- DESKTOP ACTIVE: btn-active (retirer btn-active si non activé)-->
+            <a href="index.html" class="btn">Accueil</a>
+            <a href="rooter.html" class="btn">MDT</a>
+            <a href="citoyens.html" class="btn">Fiche citoyens</a>
+            <a href="rapports.html" class="btn">Rapports</a>
+            <a href="recherches.html" class="btn btn-active">Recherches</a>
+            <a href="map.html" class="btn">Map</a>
+            <a href="demandes.html" class="btn">Port d'arme</a>
+        </div>
+    
+        <div class="motto text-right ml-auto">
+            <p class="title">
+                LA Police Department<br>
+                <span class="sub-title">“To Protect and To Serve”</span>
+            </p>
+        </div>
+    
+        <div class="lg:hidden flex">
+            <button id="mobile-menu-button" class="btn text-white">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div id="mobile-menu" class="lg:hidden hidden mt-12 bg-[#2c3847] rounded-xl">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- EXEMPLE ACTIVE MOBILE:
+            bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium
+
+            EXEMPLE NON ACTIVE MOBILE:
+            text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium
+            -->
+            <a href="index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Accueil</a>
+            <a href="rooter.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">MDT</a>
+            <a href="citoyens.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Fiches citoyens</a>
+            <a href="rapports.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Rapports</a>
+            <a href="recherches.html" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium">Recherches</a>
+            <a href="map.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Map</a>
+            <a href="demandes.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Port d'arme</a>
+          </div>
+    </div>
+
+    <div class="account pt-5">
+        <p class="welcome">Bienvenue, <span class="username">John Doe</span></p>
+        
+        <div class="actions">
+            <button class="profil-btn">Mon profil</button>
+            <button class="logout-btn">Déconnexion</button>
+        </div>
+    </div>
+
+    <main class="overflow-auto w-full">
+        <div class="mx-auto max-w-2xl">
+          
+              <div class="mx-4 grid grid-cols-12 gap-4">
+                <div class="col-span-12 mb-2">
+                  <h3 class="font-bold text-xl mb-2 flex inline justify-center text-center">
+                    <svg class="mr-2 mt-1" xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+                      <circle cx="7.67778" cy="7.24453" r="5.6" stroke="white" stroke-width="2.06897"/>
+                      <path d="M7.85556 5.02246C7.54039 5.02246 7.2283 5.08454 6.93712 5.20515C6.64594 5.32576 6.38136 5.50254 6.1585 5.7254C5.93564 5.94827 5.75886 6.21284 5.63825 6.50402C5.51764 6.7952 5.45556 7.10729 5.45556 7.42246" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                      <path d="M16.3015 15.8683L13.9015 13.4683" stroke="white" stroke-width="2.06897" stroke-linecap="round"/>
+                    </svg>
+                    Rechercher
+                  </h3>
+                </div>
+                <div class="col-span-11 mb-2">
+                  <input class="pl-2 gtacity-input font-bold flex w-full h-[40px] text-left mb-4" type="text" placeholder="Rechercher un citoyen, un rapport, ...">
+                </div>
+                <div class="col-span-1 mb-2">
+                  <div class="gtacity-filter flex justify-center text-center">
+                    <svg class="mt-2 mb-2" xmlns="http://www.w3.org/2000/svg" width="17" height="19" viewBox="0 0 17 19" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M1.56583 0.0751953C0.918099 0.0751953 0.393005 0.60029 0.393005 1.24803V3.41663H16.9888V1.24802C16.9888 0.600289 16.4637 0.0751953 15.816 0.0751953H1.56583ZM16.7408 5.76229H0.641031C0.761196 6.00241 0.922865 6.22247 1.12127 6.41136L7.0735 12.0782C7.97933 12.9405 9.40246 12.9405 10.3083 12.0782L16.2605 6.41136C16.4589 6.22247 16.6206 6.00241 16.7408 5.76229Z" fill="#191F2A"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0366 16.4247V9.10352L6.34528 9.10352L6.34528 18.6818L11.0366 16.4247Z" fill="#191F2A"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="col-span-12 mb-2 font-bold gtacity-filters-list hidden" id="filtersList">
+                  <div class="flex justify-center">
+                    <span class="mt-2">Filtres :</span>
+                    <button class="gtacity-filtre">Rapport</button>
+                    <button class="gtacity-filtre-active">Citoyen</button>
+                    <button class="gtacity-filtre">Véhicule</button>
+                  </div>
+                </div>
+              </div>
+
+                    <div class="ml-[5%] w-[90%] overflow-hidden sm:shadow-lg my-5 mb-8 mt-[25px] 2xl:mt-[51px]">
+                      <div class="bg-[#142132] relative history-text">
+                          <h1 class="flex font-extrabold text-[12px] text-white">
+                            <svg class="mr-2 mt-1" xmlns="http://www.w3.org/2000/svg" width="10" height="13" viewBox="0 0 10 13" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.014739 7.45448C0.014739 10.1738 2.21916 12.3782 4.93846 12.3782C7.65776 12.3782 9.86218 10.1738 9.86218 7.45448C9.86218 4.73519 7.65776 2.53076 4.93846 2.53076C2.21916 2.53076 0.014739 4.73519 0.014739 7.45448ZM4.93841 10.1901C3.42769 10.1901 2.20301 8.96541 2.20301 7.45469C2.20301 5.94397 3.42769 4.71929 4.93841 4.71929C6.44913 4.71929 7.67381 5.94397 7.67381 7.45469C7.67381 8.96541 6.44913 10.1901 4.93841 10.1901ZM4.93841 11.2843C2.8234 11.2843 1.10885 9.5697 1.10885 7.45469C1.10885 5.33968 2.8234 3.62513 4.93841 3.62513C7.05342 3.62513 8.76797 5.33968 8.76797 7.45469C8.76797 9.5697 7.05342 11.2843 4.93841 11.2843ZM4.39133 5.81345C4.39133 5.51131 4.63627 5.26637 4.93841 5.26637C5.24056 5.26637 5.48549 5.51131 5.48549 5.81345V7.45469C5.48549 7.75684 5.24056 8.00177 4.93841 8.00177C4.63627 8.00177 4.39133 7.75684 4.39133 7.45469L4.39133 5.81345Z" fill="white"/>
+                              <path d="M1.92944 3.89875L1.10882 3.07812" stroke="white" stroke-width="1.09416" stroke-linecap="round"/>
+                              <path d="M5.99528 1.09239C5.93294 1.03423 5.79557 0.982832 5.60448 0.946175C5.41339 0.909518 5.17926 0.889648 4.9384 0.889648C4.69754 0.889648 4.46341 0.909518 4.27232 0.946175C4.08123 0.982831 3.94386 1.03423 3.88152 1.09239" stroke="white" stroke-width="1.09416" stroke-linecap="round"/>
+                            </svg>
+                            Votre historique de recherche
+                          </h1>
+                      </div>
+                      <div class="gtacity-history-search grid grid-cols-12 gap-4">
+                        <div class="col-span-12 overflow-auto max-h-[35vh] min-h-[20vh] 2xl:max-h-[50vh] 2xl:min-h-[20vh]">
+                            <!-- EXEMPLE-->
+                            <div class="m-5">
+                              <div class="relative flex items-center space-x-3 rounded-lg gtacity-search-item px-6 py-5 shadow-sm">
+                                <div class="flex-shrink-0">
+                                  <svg class="h-10 w-10 rounded-full" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <circle cx="7.08031" cy="6.8745" r="5.31395" stroke="white" stroke-width="1.96328"/>
+                                    <path d="M7.24897 4.76562C6.94989 4.76562 6.65375 4.82453 6.37744 4.93898C6.10113 5.05343 5.85007 5.22119 5.63859 5.43266C5.42712 5.64414 5.25937 5.8952 5.14491 6.17151C5.03046 6.44781 4.97156 6.74396 4.97156 7.04303" stroke="white" stroke-width="1.51827" stroke-linecap="round"/>
+                                    <path d="M15.2635 15.0577L12.9861 12.7803" stroke="white" stroke-width="1.96328" stroke-linecap="round"/>
+                                  </svg>
+                                </div>
+                                <div class="min-w-[75%] flex-1">
+                                  <div class="focus:outline-none">
+                                    <span class="absolute inset-0" aria-hidden="true"></span>
+                                    <p class="text-lg text-white font-bold">Recherche...</p>
+                                    <p class="text-sm text-gray-400 font-bold">Date - [Filtre utilisés]</p>
+                                  </div>
+                                </div>
+                                <div class="flex justify-end min-w-[15%] flex-1 border-l border-[#FFF]">
+                                  <svg class="inline w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                                    <circle cx="4.31639" cy="4.31639" r="4.31639" transform="matrix(-1 0 0 1 13.0079 1.87061)" stroke="white" stroke-width="1.59472"/>
+                                    <path d="M8.55454 4.47412C8.79747 4.47412 9.03802 4.52197 9.26246 4.61493C9.4869 4.7079 9.69082 4.84416 9.8626 5.01594C10.0344 5.18772 10.1706 5.39164 10.2636 5.61608C10.3566 5.84052 10.4044 6.08107 10.4044 6.324" stroke="white" stroke-width="1.23325" stroke-linecap="round"/>
+                                    <path d="M2.04453 12.8338L3.89441 10.9839" stroke="white" stroke-width="1.59472" stroke-linecap="round"/>
+                                  </svg>
+                                  <svg class="inline ml-2 mr-2 w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.741258 0.427246H14.2167V2.67315C13.3898 2.67315 12.7194 3.3435 12.7194 4.17042V7.16496C12.7194 9.28241 12.7194 10.3411 12.0616 10.999C11.4038 11.6568 10.3451 11.6568 8.2276 11.6568H6.73033C4.61287 11.6568 3.55415 11.6568 2.89634 10.999C2.23853 10.3411 2.23853 9.28241 2.23853 7.16496V4.17042C2.23853 3.3435 1.56818 2.67315 0.741258 2.67315V0.427246ZM8.60191 4.17039C8.60191 3.75693 8.93708 3.42176 9.35054 3.42176C9.764 3.42176 10.0992 3.75693 10.0992 4.17039V7.91357C10.0992 8.32702 9.764 8.6622 9.35054 8.6622C8.93708 8.6622 8.60191 8.32702 8.60191 7.91357V4.17039ZM4.85874 4.17039C4.85874 3.75693 5.19391 3.42176 5.60737 3.42176C6.02083 3.42176 6.35601 3.75693 6.35601 4.17039V7.91357C6.35601 8.32702 6.02083 8.6622 5.60737 8.6622C5.19391 8.6622 4.85874 8.32702 4.85874 7.91357V4.17039Z" fill="#ED1B22"/>
+                                  </svg>
+
+                                </div>
+                              </div>
+                            </div>
+                            <!-- FIN EXEMPLE -->
+                            
+                            <p class="flex justify-center opacity-50 text-[12px] mb-2 mt-2">Uniquement vos 5 dernière recherches vous sont fournis.</p>
+                          </div>
+                      </div>
+
+                  </div>
+
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+      </main>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+// Sélection de l'élément à cliquer
+  const filterButton = document.querySelector('.gtacity-filter');
+
+// Sélection de l'élément à afficher/cacher
+const filtersList = document.getElementById('filtersList');
+
+// Ajout de l'événement de clic
+filterButton.addEventListener('click', () => {
+  // Bascule la classe 'hidden' sur l'élément filtersList
+  filtersList.classList.toggle('hidden');
+});
+
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function() {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Fermer le menu mobile lors du clic en dehors du menu
+        window.addEventListener("click", function(event) {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add("hidden");
+            }
+        });
+
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+      dropdownToggles.forEach((toggle) => {
+        const dropdownMenu = toggle.nextElementSibling;
+  
+        toggle.addEventListener('click', function () {
+          if (dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.remove('hidden');
+            createPopper(toggle, dropdownMenu, {
+              placement: 'bottom-start',
+            });
+          } else {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+  
+        document.addEventListener('click', function (event) {
+          if (!toggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+      });
+
+      const modalOpenButtons = document.querySelectorAll('.modal-open');
+const modalCloseButtons = document.querySelectorAll('.modal-close');
+
+modalOpenButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    const modalId = button.getAttribute('data-modal-target');
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  });
+});
+
+modalCloseButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    const modal = button.closest('.modal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  });
+});
+
+// Ferme le modal lorsque l'utilisateur clique en dehors du modal
+document.addEventListener('click', function (event) {
+  modalOpenButtons.forEach((button) => {
+    const modalId = button.getAttribute('data-modal-target');
+    const modal = document.getElementById(modalId);
+    if (!modal.contains(event.target) && !button.contains(event.target)) {
+      modal.classList.add('hidden');
+    }
+  });
+});
+});
+  </script>
+</html>

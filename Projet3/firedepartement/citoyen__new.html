@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citoyens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/new_styles.css" > 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            screens: {
+              'sm': '640px',
+              'md': '768px',
+              'lg': '1024px',
+              'xl': '1560px',
+              '2xl': '1760px',
+            },
+            extend: {
+              colors: {
+                'background': 'rgb(96,96,138)',
+                'neon-color': '#1092ee',
+                'gtacity-bleu-nuit': '#282434',
+                'gtacity-bleu-nuit2': '#271950',
+                'gtacity-bleu-corporate': '#005FA5',
+                'gtacity-bleu-corporate-locked': 'rgb(0 95 165 / 30%)',
+                'gtacity-bleu-corporate2': '#00487D',
+                'gtacity-bleu-corporate2-locked': 'rgb(0 72 125 / 30%)',
+                'gtacity-bleu-tiers': '#0B0B4D',
+                'gtacity-bleu-tiers2': '#191970',
+                'gtacity-selected-profile': '#5fa8df',
+                'gtacity-vip-profile-head': '#f6b93b',
+                'gtacity-vip-profile-head-locked': 'rgb(246 185 59 / 30%)',
+                'gtacity-vip-profile': '#fdcb6e',
+                'gtacity-vip-profile-selected': '#dabb0b',
+                'gtacity-bleu1': 'rgb(96,96,138)',
+                'gtacity-bleu2': 'rgb(20,33,50)',
+              }
+           }
+          }
+      }
+      </script>
+    
+    <script src="assets/fontawesome/v6.4.0/all.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</head>
+<body class="pt-[52px] 2xl:pt-[89px]">
+    
+    <div class="header flex items-center justify-between p-4  border-yellow-400 bg-opacity-10 backdrop-blur-md">
+        <img src="assets/img/icon.png" class="logo w-24 h-24" alt="LA City Logo">
+    
+        <div class="nav hidden lg:flex space-x-4 mb-6">
+            <!-- DESKTOP ACTIVE: btn-active (retirer btn-active si non activé)-->
+            <a href="index.html" class="btn">Accueil</a>
+            <a href="rooter.html" class="btn">Rooter</a>
+            <a href="citoyens.html" class="btn btn-active">Fiche patient</a>
+            <a href="rapports.html" class="btn">Rapports</a>
+            <a href="recherches.html" class="btn">Recherches</a>
+            <a href="map.html" class="btn">Map</a>
+        </div>
+    
+        <div class="motto text-right ml-auto">
+            <p class="title">
+                LA Police Department<br>
+                <span class="sub-title">“To Protect and To Serve”</span>
+            </p>
+        </div>
+    
+        <div class="lg:hidden flex">
+            <button id="mobile-menu-button" class="btn text-white">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div id="mobile-menu" class="lg:hidden hidden mt-12 bg-[#2c3847] rounded-xl">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- EXEMPLE ACTIVE MOBILE:
+            bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium
+
+            EXEMPLE NON ACTIVE MOBILE:
+            text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium
+            -->
+            <a href="index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Accueil</a>
+            <a href="rooter.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Rooter</a>
+            <a href="citoyens.html" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium">Fiches patient</a>
+            <a href="rapports.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Rapports</a>
+            <a href="recherches.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Recherches</a>
+            <a href="map.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Map</a>
+          </div>
+    </div>
+
+    <div class="account pt-5">
+        <p class="welcome">Bienvenue, <span class="username">John Doe</span></p>
+        
+        <div class="actions">
+            <button class="profil-btn">Mon profil</button>
+            <button class="logout-btn">Déconnexion</button>
+        </div>
+    </div>
+
+    <main class="overflow-auto w-full">
+        <div class="modal flex fixed bottom-[170px] right-[90px] 2xl:bottom-[220px] 2xl:right-[150px] gtacity-notification-container gtacity-notification-container-content bottom-0 overflow-auto z-10 hidden mr-[20px] max-h-[80%]" id="notifications">
+            <div class="flex items-center justify-between">
+                <h2 class="w-full text-md text-white font-bold mb-1 mt-1 text-center">Notifications</h2>
+                <span class="absolute inline right-[13px] modal-close"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+            </div>    
+
+            <div class="overflow-auto" id="notifications-list">
+                <!-- EXEMPLE DE NOTIFICATION -->
+                <div class="mb-2 gtacity-notification-content">
+                    <div class="p-5 text-white relative flex w-full h-full flex-col rounded-xl shadow-md">
+                        <h5 class="mb-2 block text-[12px] font-bold text-white">
+                            <span id="user" class="opacity-50 text-[16px]">Direction</span>
+                            <span id="date" class="opacity-50 text-[14px] text-right right-date">13:45 03 août 2023</span>
+                        </h5>
+                        <p id="content" class="gtacity-content text-[11px]">
+                            Lorem ipsum dolor sit amet consectetur. Urna odio lectus cursus cursus. In at id gravida at senectus. Suspendisse nulla mattis consequat netus pellentesque feugiat in dignissim. Sem tempus neque nec egestas malesuada tempus sollicitudin et scelerisque. Commodo eget viverra convallis dignissim egestas.
+                        </p>
+                    </div>
+                </div>
+                <!-- FIN EXEMPLE DE NOTIFICATION -->
+            </div>
+        </div>
+
+        <div class="fixed bottom-[70px] right-[90px] 2xl:bottom-[120px] 2xl:right-[150px] text-white px-4 py-2 rounded-md modal-open" data-modal-target="notifications">
+            <div class="gtacity-notifications-bell-icon">
+                <div class="flex items-center justify-center bg-no-repeat bg-center bg-cover p-[20px] m-[10px]" style="background-image: url('assets/img/bell.png');">
+                    <div class="relative">
+                      <div id="count_list" style="/* font-weight: 700; */" class="gtacity-notification-count absolute right-0 text-white rounded-full w-[20px] h-[20px]">
+                        1
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto 2xl:py-6 sm:px-6 lg:px-8 2xl:pt-[55px]">
+          
+            <div class="mx-4 grid grid-cols-12 gap-4">
+                <div class="col-span-12 mb-2">
+                    <div class="bg-[#FFCB04] w-full gtacity-home-item overflow-hidden sm:shadow-lg my-5 mb-8 mt-[15px] 2xl:mt-[51px]">
+                        <div class="bg-[#FFCB04] mb-3 mt-3 flex justify-center text-center">
+                            <h1 class="flex font-extrabold text-2xl text-black">
+                                <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="29" viewBox="0 0 24 29" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0.434082V7.46702L12 7.54356V7.54357V7.54358V7.54359C11.9999 8.14007 11.9998 8.71975 12.0641 9.19786C12.1365 9.73687 12.3131 10.3519 12.824 10.8628C13.3349 11.3737 13.95 11.5503 14.489 11.6228C14.9671 11.687 15.5468 11.6869 16.1432 11.6868H16.1433H16.1433H16.1433L16.2198 11.6868H23.2527V20.1263C23.2527 24.1048 23.2527 26.094 22.0168 27.3299C20.7809 28.5659 18.7916 28.5659 14.8132 28.5659H9.18685C5.20841 28.5659 3.2192 28.5659 1.98326 27.3299C0.747314 26.094 0.747314 24.1048 0.747314 20.1263V8.87362C0.747314 4.89518 0.747314 2.90596 1.98326 1.67002C3.2192 0.434082 5.20841 0.434082 9.18685 0.434082H12ZM14.8132 0.440582V7.46702C14.8132 8.16986 14.8162 8.55549 14.8522 8.82301L14.8536 8.83325L14.8638 8.83466C15.1313 8.87063 15.517 8.87361 16.2198 8.87361H23.2462C23.2319 8.2946 23.1859 7.91145 23.0386 7.55573C22.8245 7.03875 22.4179 6.63221 21.6048 5.81912L21.6048 5.81911L17.8677 2.082C17.0546 1.26891 16.6481 0.862363 16.1311 0.648222C15.7754 0.500879 15.3922 0.454918 14.8132 0.440582ZM6.37367 15.9065C6.37367 15.1297 7.00342 14.5 7.78026 14.5L16.2198 14.5C16.9966 14.5 17.6264 15.1297 17.6264 15.9065C17.6264 16.6834 16.9966 17.3131 16.2198 17.3131L7.78026 17.3131C7.00342 17.3131 6.37367 16.6834 6.37367 15.9065ZM7.78026 20.1263C7.00342 20.1263 6.37367 20.7561 6.37367 21.5329C6.37367 22.3098 7.00342 22.9395 7.78026 22.9395H13.4066C14.1835 22.9395 14.8132 22.3098 14.8132 21.5329C14.8132 20.7561 14.1835 20.1263 13.4066 20.1263H7.78026Z" fill="black"/>
+                                  </svg>
+                                Créer une fiche patient</h1>
+                        </div>
+                        <div class="grid grid-cols-12 gap-4 gtacity-item-table">
+                            <div class="col-span-4 w-[100%] gtacity-item-table gtacity-citizen-bg max-h-[52vh] min-h-[20vh] 2xl:max-h-[60vh] 2xl:min-h-[20vh]">
+                                <div class="grid grid-cols-1 gap-4 gtacity-item-table gtacity-citizen-bg">
+                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                        <input type="text" id="citizen" class="gtacity-input w-custom flex h-[50px] text-left font-bold m-4 p-4" placeholder="Rechercher un patient" aria-invalid="true" aria-describedby="email-error">
+                                        <div class="z-10 pointer-events-none absolute inset-y-0 right-[10px] flex items-center pr-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <circle cx="8.02237" cy="8.22012" r="6.0209" stroke="white" stroke-width="2.22447"/>
+                                                <path d="M8.2135 5.83105C7.87464 5.83105 7.5391 5.8978 7.22603 6.02747C6.91297 6.15715 6.62851 6.34722 6.3889 6.58683C6.14928 6.82644 5.95921 7.1109 5.82954 7.42397C5.69986 7.73704 5.63312 8.07258 5.63312 8.41144" stroke="white" stroke-width="1.72026" stroke-linecap="round"/>
+                                                <path d="M17.2943 17.492L14.7139 14.9116" stroke="white" stroke-width="2.22447" stroke-linecap="round"/>
+                                              </svg>
+                                        </div>
+                                    </div>
+                                    <div class="overflow-auto max-h-[52vh] min-h-[20vh]  mb-[15rem]">
+                                        <div class="grid grid-cols-12 p-5">
+                                            <div class="absolute z-10 h-full w-[22.5vw] 2xl:w-[26.5vw] justify-center text-center">
+                                                <div class="grid grid-cols-1 gap-4">
+                                                    <div class="col-span-2">
+                                                        <i class="fa-duotone fa-lock" style="font-size:60px;"></i>
+                                                        <p class="font-bold">Création d’une fiche patient en cours...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="blur blur-8" id="citizens_list">
+                                        
+                                            <!-- EXEMPLE -->
+                                            <!-- MODIFIER LE CSS SI ELEMENT SELECTIONNEE:
+                                                gtacity-citizen-active
+
+                                                SI ELEMENT NON SELECTIONNEE: gtacity-citizen
+                                            -->
+                                            <div class="gtacity-citizen col-span-1 mt-1 mx-4 mb-2">
+                                                <div class="grid grid-cols-12 p-5">
+                                                    <div class="col-span-2">
+                                                        <img class="gtacity-officer-icon w-12 h-12" src="assets/img/citizen.png">
+                                                    </div>
+                                                    <div class="col-span-8 ml-2 mr-2 border-citizen">
+                                                        <a href="citoyen__page.html">
+                                                            <h5 class="font-bold text-sm">NOM Prénom</h5>
+                                                            <p class="text-sm">Date de naissance</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-span-2 flex items-center justify-end">
+                                                        <i class="fa-solid fa-trash-can" style="color: #ff0000;"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- FIN EXEMPLE -->
+
+                                        </div>
+
+                                        
+                                        
+                                        <a href="citoyen__new.html" class="z-10 relative">
+                                            <div class="z-10 bg-[#7a8a9e] rounded-[9.729px] m-4 p-4 bottom-0 text-center font-bold">
+                                                <i class="fa-solid fa-plus"></i> Créer une fiche patient
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-span-8 w-[100%] gtacity-border-left-negative gtacity-item-table overflow-auto max-h-[52vh] min-h-[20vh] 2xl:max-h-[60vh] 2xl:min-h-[20vh]">
+
+                                <div class="mt-[5rem] bg-[#321414] mx-8 rounded-xl mb-10">
+                                    <div class="grid grid-cols-3 p-5">
+                                        <div class="col-span-1">
+                                            <button class="pl-[40px] h-[50px] pr-[40px] mt-10 bg-[#24958F] rounded-lg font-bold">
+                                                <i class="fa-solid fa-circle-check"></i> Créer la fiche
+                                            </button>
+                                        </div>
+                                        <div class="col-span-1 flex flex-col items-center">
+                                            <div class="inline-block h-[120px] w-[120px] top-[-70px] bg-[#1E1E1E] relative rounded-full border-[15px] border-solid border-[#321414]">
+                                                <img class="inline-block h-[56px] w-[62px] top-[15px] left-[12px] relative " src="assets/img/camera.png" alt="">
+                                            </div>
+                                            <p class="font-bold text-lg text-white top-[-65px] relative">NOM Prénom</p>
+                                            <p class="font-regular text-sm text-white opacity-50 top-[-60px] relative"><span id="age">0</span> ans - <span id="sexe">Non connu</span></p>
+                                        </div>
+                                        
+                                        <div class="col-span-1 flex justify-end">
+                                            <button class="pl-[40px] h-[50px] pr-[40px] mt-10 bg-[#ED1B22] rounded-lg font-bold">
+                                                <i class="fa-solid fa-circle-xmark"></i> Annuler
+                                            </button>
+                                        </div>                                        
+                                        
+                                    </div>
+                                    <div class="grid grid-cols-2 p-5">
+                                        <div class="col-span-1 mx-4">
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Adresse :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Adresse de résidence du patient">
+                                            </div>
+                                            <div class="grid grid-cols-3">
+                                                <div class="mt-2 flex col-span-2 gap-x-4">
+                                                    <label class="flex-none font-bold inline">
+                                                        Date de naissance :
+                                                    </label>
+                                                    <input type="date" id="birthday" class="w-full mr-[10px] gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Date de naissance du patient">
+                                                </div>
+                                                <div class="mt-2 flex gap-x-4">
+                                                    <label class="flex-none font-bold inline">
+                                                        Sexe :
+                                                    </label>
+                                                    <select type="text" id="select-sexe" class="w-full gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Sexe du patient">
+                                                        <option value="1">Homme</option>
+                                                        <option value="2">Femme</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2">
+                                                <div class="mt-2 flex gap-x-4">
+                                                    <label class="flex-none font-bold inline">
+                                                        Taille :
+                                                    </label>
+                                                    <input type="text" class="w-full mr-[10px] gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Taille du patient">
+                                                </div>
+                                                <div class="mt-2 flex gap-x-4">
+                                                    <label class="flex-none font-bold inline">
+                                                        Masse :
+                                                    </label>
+                                                    <input type="text" class="w-full gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Masse du patient">
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 flex gap-x-4">
+                                                <!-- gtacity-permis-active = PERMIS ACTIVE
+                                                gtacity-permis = PAS DE PERMIS -->
+                                                <label class="flex-none font-bold inline">
+                                                    Permis de conduire :
+                                                </label>
+                                                <div class="gtacity-permis-active p-1">
+                                                    <i class="fa-solid fa-car"></i>
+                                                </div>
+                                                <div class="gtacity-permis p-1">
+                                                    <i class="fa-solid fa-plane-departure"></i>
+                                                </div>
+                                                <div class="gtacity-permis p-1">
+                                                    <i class="fa-solid fa-ship"></i>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Permis d'arme :
+                                                </label>
+                                                <div class="gtacity-permis-active p-1">
+                                                    <!-- GUN -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 20 13" fill="none">
+                                                        <path d="M2.96965 0.538574L1.82865 3.25451H18.0831L18.0722 0.538614H7.5135V2.76398H6.91319V0.538614H6.24564V2.76398H5.64552V0.538614H4.9478V2.76398H4.34749V0.538614L2.96965 0.538574ZM18.4911 1.17731V2.80456H19.239V1.17731H18.4911ZM2.07038 3.85479L2.89345 5.13606L0.954834 12.1739L5.02416 12.461L5.88621 8.53915H10.5182L11.1051 5.32739L18.0907 5.17239L18.0855 3.85483H2.07034L2.07038 3.85479ZM10.3416 5.34436L9.89454 7.79132H6.05054L6.57001 5.42809L7.07147 5.41696L6.98246 6.8377L7.55324 7.38103L7.59338 6.03432L8.5815 5.38342L10.3416 5.34436H10.3416Z" fill="white"/>
+                                                      </svg>
+                                                </div>
+                                                <div class="gtacity-permis p-1">
+                                                    <!-- SMG -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.66528 2.00489V1.48018C1.66528 1.43336 1.6828 1.38817 1.71456 1.35346L2.46782 0.531442C2.50335 0.492805 2.55344 0.470703 2.606 0.470703H4.14002C4.39886 0.470703 4.6094 0.681243 4.6094 0.940079V2.00489H9.84735V1.60526C9.84735 1.55844 9.86486 1.51325 9.89663 1.47854L10.6499 0.656522C10.6854 0.617885 10.7355 0.595783 10.7881 0.595783H11.4767C11.7355 0.595783 11.946 0.806323 11.946 1.06516V2.00489H12.3506C12.5294 2.00489 12.6835 2.11279 12.7513 2.26688C12.7831 2.25947 12.8163 2.25554 12.8504 2.25554H13.7615C14.0027 2.25554 14.1989 2.45184 14.1989 2.693V2.87112H15.8314C16.0902 2.87112 16.3007 3.08166 16.3007 3.34049V3.89058C16.3007 4.14926 16.0902 4.3598 15.8314 4.3598H14.1989V4.53808C14.1989 4.77924 14.0027 4.97553 13.7615 4.97553H12.8504C12.8292 4.97553 12.8084 4.97402 12.788 4.9711V5.0461C12.788 5.28725 12.5917 5.48355 12.3506 5.48355H11.7211L11.4315 6.40789C11.4149 6.65183 11.2113 6.84518 10.9632 6.84518H10.7114V8.23137C10.7114 8.49004 10.5009 8.70058 10.2421 8.70058H8.41008C8.36424 8.70058 8.32003 8.68372 8.28565 8.65343L7.09397 7.59649V10.3155L7.57415 10.6356C7.62638 10.6703 7.65765 10.7289 7.65765 10.7916V11.2143C7.65765 11.3178 7.57382 11.4017 7.47019 11.4017H6.96218V12.0599C6.96218 12.3187 6.75164 12.5293 6.4928 12.5293H4.57813C4.3193 12.5293 4.10876 12.3187 4.10876 12.0599V11.4017H3.85074C3.80064 11.4017 3.75251 11.3816 3.71731 11.3459C3.68211 11.3102 3.66263 11.2619 3.66328 11.2118L3.70978 7.68357C3.71109 7.58092 3.79459 7.49857 3.89724 7.49857C4.25741 7.49857 4.55047 7.20552 4.55047 6.84534H4.7648H4.92538C4.92538 7.3491 4.56127 7.76936 4.0824 7.85679L4.04065 11.0268H7.28274V10.8919L6.80255 10.5719C6.75033 10.5372 6.71906 10.4785 6.71906 10.4158V6.84518H4.76481H3.87709C3.83731 6.84518 3.79834 6.83241 3.76625 6.809L1.95904 5.48355H1.42756C1.18641 5.48355 0.990112 5.28725 0.990112 5.0461V2.44234C0.990112 2.20119 1.18641 2.00489 1.42756 2.00489H1.66528ZM4.23449 2.00489V0.940079C4.23449 0.888836 4.19127 0.845615 4.14002 0.845615H2.68851L2.04019 1.55304V2.00489H4.23449ZM4.48367 11.4017V12.0599C4.48367 12.1111 4.52689 12.1544 4.57813 12.1544H6.4928C6.54404 12.1544 6.58727 12.1111 6.58727 12.0599V11.4017H4.48367ZM8.48113 8.32567L7.09397 7.09548V6.84518H8.18744V7.07766C8.18744 7.56799 8.58641 7.96697 9.07675 7.96697C9.18021 7.96697 9.2642 7.88298 9.2642 7.77951C9.2642 7.67604 9.18038 7.59206 9.07675 7.59206C8.79303 7.59206 8.56235 7.36122 8.56235 7.07766V6.84518H10.3365V8.23137C10.3365 8.28245 10.2933 8.32567 10.2421 8.32567H8.48113ZM2.59315 5.48355L3.93848 6.47027H10.9632C11.0145 6.47027 11.0577 6.42705 11.0577 6.37597C11.0577 6.35698 11.0607 6.33799 11.0662 6.31998L11.3282 5.48355H2.59315ZM11.5711 2.00489H10.2223V1.67795L10.8706 0.970531H11.4767C11.5279 0.970531 11.5711 1.01375 11.5711 1.065V2.00489ZM12.4131 4.55013V5.0461C12.4131 5.07999 12.3845 5.10864 12.3506 5.10864H1.42756C1.39367 5.10864 1.36502 5.07999 1.36502 5.0461V2.44234C1.36502 2.40846 1.39367 2.3798 1.42756 2.3798H12.3506C12.3845 2.3798 12.4131 2.40846 12.4131 2.44234V2.68095C12.4131 2.68277 12.413 2.68459 12.413 2.68641C12.413 2.68764 12.413 2.68887 12.413 2.6901L12.413 2.69177L12.413 4.53808C12.413 4.54211 12.413 4.54613 12.4131 4.55013ZM12.788 4.54253C12.7904 4.57444 12.818 4.60062 12.8504 4.60062H13.7615C13.7954 4.60062 13.824 4.57197 13.824 4.53808V2.693C13.824 2.65911 13.7954 2.63046 13.7615 2.63046H12.8504C12.818 2.63046 12.7904 2.65664 12.788 2.68855V4.54253ZM14.1989 3.98488H15.0157V3.24603H14.1989V3.98488ZM15.8314 3.98488H15.3906V3.24603H15.8314C15.8826 3.24603 15.9258 3.28925 15.9258 3.34049V3.89058C15.9258 3.94166 15.8826 3.98488 15.8314 3.98488Z" fill="white"/>
+                                                        <path d="M3.93848 6.47027L2.59315 5.48355H11.3282L11.0662 6.31998C11.0607 6.33799 11.0577 6.35698 11.0577 6.37597C11.0577 6.42705 11.0145 6.47027 10.9632 6.47027H3.93848Z" fill="white"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4131 5.0461V4.55013C12.413 4.54613 12.413 4.54211 12.413 4.53808L12.413 2.69177L12.413 2.6901C12.413 2.68887 12.413 2.68764 12.413 2.68641C12.413 2.68459 12.4131 2.68277 12.4131 2.68095V2.44234C12.4131 2.40846 12.3845 2.3798 12.3506 2.3798H1.42756C1.39367 2.3798 1.36502 2.40846 1.36502 2.44234V5.0461C1.36502 5.07999 1.39367 5.10864 1.42756 5.10864H12.3506C12.3845 5.10864 12.4131 5.07999 12.4131 5.0461ZM10.8337 3.3382H2.94423C2.8406 3.3382 2.75678 3.25422 2.75678 3.15075C2.75678 3.04728 2.84076 2.96329 2.94423 2.96329H10.8337C10.9374 2.96329 11.0212 3.04728 11.0212 3.15075C11.0212 3.25422 10.9374 3.3382 10.8337 3.3382ZM2.94423 4.52515H10.8337C10.9374 4.52515 11.0212 4.44116 11.0212 4.33769C11.0212 4.23423 10.9374 4.15024 10.8337 4.15024H2.94423C2.84076 4.15024 2.75678 4.23423 2.75678 4.33769C2.75678 4.44116 2.8406 4.52515 2.94423 4.52515Z" fill="white"/>
+                                                        <path d="M4.48367 11.4017V12.0599C4.48367 12.1111 4.52689 12.1544 4.57813 12.1544H6.4928C6.54404 12.1544 6.58727 12.1111 6.58727 12.0599V11.4017H4.48367Z" fill="white"/>
+                                                        <path d="M12.8504 4.60062C12.818 4.60062 12.7904 4.57444 12.788 4.54253V2.68855C12.7904 2.65664 12.818 2.63046 12.8504 2.63046H13.7615C13.7954 2.63046 13.824 2.65911 13.824 2.693V4.53808C13.824 4.57197 13.7954 4.60062 13.7615 4.60062H12.8504Z" fill="white"/>
+                                                        <path d="M4.7648 6.84534H4.92538C4.92538 7.3491 4.56127 7.76936 4.0824 7.85679L4.04065 11.0268H7.28274V10.8919L6.80255 10.5719C6.75033 10.5372 6.71906 10.4785 6.71906 10.4158V6.84518H4.76481L4.7648 6.84534Z" fill="white"/>
+                                                      </svg>
+                                                </div>
+                                                <div class="gtacity-permis p-1">
+                                                    <!-- SHOTGUN -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                                                        <path d="M7.27533 12.7994C7.18026 12.8948 7.03668 12.9353 6.89941 12.8926L6.09256 12.6411C5.89529 12.5797 5.78516 12.3704 5.84654 12.1731C5.90819 11.9759 6.11777 11.8657 6.315 11.9271L7.12187 12.178C7.31913 12.2394 7.42926 12.4492 7.3676 12.6465C7.34901 12.7063 7.31668 12.7583 7.27533 12.7994Z" fill="white"/>
+                                                        <path d="M3.82267 18.3682C3.78266 18.4083 3.73391 18.4389 3.67909 18.4576C3.57469 18.4932 3.46019 18.4811 3.36567 18.4247L0.720714 16.8378C0.625078 16.7802 0.559882 16.6833 0.543189 16.5731C0.52646 16.463 0.559636 16.3507 0.63388 16.2679L3.82516 12.6909C3.875 12.6345 3.94131 12.5951 4.01447 12.577L4.30846 12.5041C4.43037 12.0602 4.7575 11.0854 5.41012 10.4323C5.4104 10.4323 5.41041 10.4323 5.41041 10.4323L12.5655 3.27715C12.6356 3.20701 12.7304 3.16756 12.8296 3.16756C12.9288 3.16756 13.0241 3.20701 13.0942 3.27715L14.1523 4.33522C14.2986 4.48153 14.2986 4.71826 14.1523 4.86457L6.55639 12.4602L6.30953 14.1884C6.292 14.3117 6.21449 14.418 6.10269 14.4723L5.20598 14.9079L3.90677 18.24C3.88762 18.2888 3.85883 18.3321 3.82267 18.3682Z" fill="white"/>
+                                                        <path d="M12.8296 3.16756C12.7304 3.16756 8.18712 7.89253 8.33312 8.03881L9.39126 9.09688C9.4614 9.16702 9.55619 9.20647 9.65537 9.20647C9.75508 9.20647 9.84987 9.16702 9.92001 9.09688L14.1524 4.86454C14.2987 4.71822 14.2987 4.4815 14.1524 4.33519L13.0943 3.27712C13.0241 3.20701 12.9288 3.16756 12.8296 3.16756Z" fill="white"/>
+                                                        <path d="M13.3589 5.658L13.8877 5.12921L12.3008 3.54179L11.7715 4.07111L13.3589 5.658Z" fill="white"/>
+                                                        <path d="M12.3008 6.7161L12.8296 6.18731L11.2428 4.5999L10.7134 5.12921L12.3008 6.7161Z" fill="white"/>
+                                                        <path d="M11.2428 7.77417L11.7715 7.24538L10.1847 5.658L9.65537 6.18731L11.2428 7.77417Z" fill="white"/>
+                                                        <path d="M10.1847 8.83227L10.7134 8.30292L9.12658 6.7161L8.59779 7.24485L10.1847 8.83227Z" fill="white"/>
+                                                        <path d="M15.7392 1.16151L6.46819 10.4323C6.32216 10.5786 6.08544 10.5786 5.93916 10.4323C5.79313 10.2865 5.79313 10.0498 5.93916 9.90352L15.2105 0.632196C15.3562 0.485883 15.5935 0.485883 15.7392 0.632196C15.8855 0.778508 15.8855 1.01523 15.7392 1.16151Z" fill="white"/>
+                                                        <path d="M6.34681 9.82241C6.20709 9.76433 6.04626 9.79667 5.93916 9.90349L5.41037 10.4322C5.41037 10.4322 5.41037 10.4322 5.41009 10.4322C4.7575 11.0854 4.43033 12.0602 4.30843 12.504L4.01444 12.5769C3.94128 12.595 3.87524 12.6345 3.82513 12.6909L0.63388 16.2679C0.559636 16.3507 0.526495 16.463 0.543189 16.5731C0.559917 16.6833 0.625113 16.7802 0.720714 16.8378L3.36567 18.4247C3.46019 18.4811 3.57469 18.4931 3.67909 18.4576C3.73387 18.4389 3.78266 18.4083 3.82267 18.3682C3.85883 18.3321 3.88759 18.2888 3.90677 18.24L5.20598 14.9079L6.10269 14.4723C6.21449 14.418 6.292 14.3117 6.30953 14.1884L6.57421 12.3369C6.57666 12.3194 6.57779 12.3019 6.57779 12.2843V10.1682C6.57779 10.0169 6.48681 9.88052 6.34681 9.82241Z" fill="white"/>
+                                                      </svg>
+                                                </div>
+                                                <div class="gtacity-permis p-1">
+                                                    <!-- AR -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M0.206448 14.1721L1.61593 15.8406C1.61593 15.8406 2.1134 16.5444 2.47106 16.0167C2.82873 15.4902 4.97291 11.1437 4.97291 11.1437C4.97291 11.1437 5.18775 10.7891 5.33844 11.4227C5.48914 12.0563 6.72675 15.1222 6.72675 15.1222C6.72675 15.1222 6.91375 15.3806 7.13827 15.19C7.3634 15.0012 8.26393 14.2417 8.26393 14.2417C8.26393 14.2417 8.56773 14.1454 8.25303 13.5451C7.93773 12.9429 6.78242 10.2038 6.78242 10.2038C6.78242 10.2038 6.61358 9.85283 6.85807 9.64707C7.10196 9.44191 7.41727 9.20649 7.41727 9.20649C7.41727 9.20649 7.55767 8.9166 7.94439 9.22222C8.3305 9.52724 9.43799 10.6487 11.144 11.0705C12.8494 11.4935 14.3424 11.5504 14.3424 11.5504C14.3424 11.5504 14.708 11.5637 14.7594 10.9397C14.8127 10.3188 14.7818 9.44493 14.7818 9.44493C14.7818 9.44493 14.8169 9.02856 14.4508 9.01646C14.0858 9.00375 13.4661 9.14294 12.6848 8.90208C11.9035 8.66243 10.1382 7.37095 10.1382 7.37095C10.1382 7.37095 9.85497 7.14885 10.1176 6.92614C10.3803 6.70464 12.2182 5.15415 12.2182 5.15415C12.2182 5.15415 12.5335 4.91873 12.3435 4.6936C12.1541 4.46908 12.0591 4.35651 12.0591 4.35651L15.3973 1.53754L14.763 0.787109L11.4248 3.60487L11.1507 3.35734C11.1507 3.35734 10.9068 3.14492 10.7004 3.31922C10.4946 3.49109 8.34018 5.27761 8.34018 5.27761C8.34018 5.27761 7.73318 4.6355 7.28352 5.01496C6.83387 5.39441 4.0966 7.70744 4.0966 7.70744C4.0966 7.70744 3.97738 7.87144 4.07118 8.20974C4.16438 8.54925 4.33565 8.78891 4.1668 8.93173C3.99856 9.07335 3.1168 9.81833 3.1168 9.81833C3.1168 9.81833 2.87049 10.0586 2.90135 10.5149C2.93282 10.97 2.68106 11.4699 2.19389 11.8826C1.70731 12.2942 0.302673 13.4476 0.302673 13.4476C0.302673 13.4476 -0.109461 13.7968 0.206448 14.1721Z" fill="white"/>
+                                                        <path d="M12.8434 2.69769C12.8434 2.69769 11.7256 1.37293 11.5295 1.14175C11.3334 0.909357 10.7634 0.704804 10.6938 1.51999C10.6157 2.45864 10.5285 3.72167 10.5285 3.72167L11.5035 3.75374C11.5035 3.75374 11.4557 3.23631 11.3855 2.97668C11.2971 2.65351 11.4502 2.49495 11.6251 2.70314C11.8 2.90829 12.1287 3.29561 12.1287 3.29561L12.8434 2.69769Z" fill="white"/>
+                                                        <path d="M6.80966 10.6426C6.80966 10.6426 7.11951 10.3812 7.36704 10.1724C7.61456 9.96358 7.85421 9.49456 7.64784 8.87364C7.44208 8.25332 8.25303 8.9626 8.25303 8.9626C8.25303 8.9626 8.67848 9.93816 7.95286 10.55C7.22421 11.1667 6.90225 11.4112 6.90225 11.4112L6.80966 10.6426Z" fill="white"/>
+                                                      </svg>
+                                                </div>
+                                                <div class="gtacity-permis p-1">
+                                                    <!-- SNIPER -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                                                        <path d="M11.7825 5.7618L15.9457 1.59858L15.2207 0.873535L14.4366 1.65759L13.9107 1.13165L13.1856 1.8567L13.7116 2.38267L11.0575 5.03671L10.695 5.39922L8.93608 7.15815L7.07917 9.01506L6.7391 8.675L7.22305 8.19105L7.3605 8.3285L8.08555 7.60345L7.08564 6.6035L6.36059 7.32855L6.49807 7.46603L2.89705 11.0669L2.7596 10.9294L2.03455 11.6545L3.03447 12.6544L3.75952 11.9294L3.62207 11.7919L4.10602 11.308L4.44608 11.648L3.99431 12.0998L0.635742 15.4584L3.3036 18.1262L5.70596 14.1454L7.23875 16.9893L9.13587 15.0922L8.41877 13.7618L9.49022 12.6903L8.60296 10.9648L8.98201 10.5857L10.2884 11.8921L11.9792 10.2014L10.6727 8.89494L12.7942 6.7735L11.7825 5.7618ZM3.10247 16.4749L2.08594 15.4584L4.71943 12.8249L4.76189 12.8673L5.08477 13.1902L3.10247 16.4749ZM4.83113 10.5829L6.01398 9.40008L6.35405 9.74015L5.1712 10.923L4.83113 10.5829ZM7.4878 15.2901L6.36348 13.2042L6.74682 12.8209L7.87114 14.9068L7.4878 15.2901ZM7.91093 12.8195L7.50371 12.064L7.84152 11.7262L8.23637 12.4941L7.91093 12.8195ZM8.257 9.86061L5.73113 12.3864L5.44451 12.0998L8.93605 8.60831L9.07936 8.75162L9.22267 8.89494L8.257 9.86061ZM10.2884 10.442L9.70706 9.86061L9.94772 9.61995L10.5291 10.2013L10.2884 10.442ZM9.94772 8.16985L9.66106 7.88323L11.0574 6.48684L11.3441 6.7735L9.94772 8.16985Z" fill="white"/>
+                                                        <path d="M3.10247 16.4749L2.08594 15.4584L4.71943 12.8249L4.76189 12.8673L5.08477 13.1902L3.10247 16.4749Z" fill="white"/>
+                                                        <path d="M7.4878 15.2901L6.36348 13.2042L6.74682 12.8209L7.87114 14.9068L7.4878 15.2901Z" fill="white"/>
+                                                        <path d="M10.2884 10.442L9.70706 9.86061L9.94772 9.61995L10.5291 10.2013L10.2884 10.442Z" fill="white"/>
+                                                        <path d="M8.257 9.86061L5.73113 12.3864L5.44451 12.0998L8.93605 8.60831L9.07936 8.75162L9.22267 8.89494L8.257 9.86061Z" fill="white"/>
+                                                        <path d="M9.94772 8.16985L9.66106 7.88323L11.0574 6.48684L11.3441 6.7735L9.94772 8.16985Z" fill="white"/>
+                                                      </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1 mx-4">
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Profession :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Profession du patient">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Lieu de naissance :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Lieu de naissance du patient">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Nationalité :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Nationalité du patient">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Véhicule :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Véhicule du patient">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    N° de téléphone :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-citizen-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="N° de téléphone du patient">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+      </main>
+</body>
+<script>
+    age = document.getElementById('birthday').value;
+    
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function() {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Fermer le menu mobile lors du clic en dehors du menu
+        window.addEventListener("click", function(event) {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add("hidden");
+            }
+        });
+
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+      dropdownToggles.forEach((toggle) => {
+        const dropdownMenu = toggle.nextElementSibling;
+  
+        toggle.addEventListener('click', function () {
+          if (dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.remove('hidden');
+            createPopper(toggle, dropdownMenu, {
+              placement: 'bottom-start',
+            });
+          } else {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+  
+        document.addEventListener('click', function (event) {
+          if (!toggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+      });
+
+      const modalOpenButtons = document.querySelectorAll('.modal-open');
+const modalCloseButtons = document.querySelectorAll('.modal-close');
+
+modalOpenButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    const modalId = button.getAttribute('data-modal-target');
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  });
+});
+
+modalCloseButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    const modal = button.closest('.modal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  });
+});
+
+// Ferme le modal lorsque l'utilisateur clique en dehors du modal
+document.addEventListener('click', function (event) {
+  modalOpenButtons.forEach((button) => {
+    const modalId = button.getAttribute('data-modal-target');
+    const modal = document.getElementById(modalId);
+    if (!modal.contains(event.target) && !button.contains(event.target)) {
+      modal.classList.add('hidden');
+    }
+  });
+});
+});
+  </script>
+</html>

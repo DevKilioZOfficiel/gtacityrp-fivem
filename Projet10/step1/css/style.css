@@ -1,0 +1,104 @@
+body {
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  user-select: none; -webkit-user-drag: none;
+}
+
+.background-with-overlay {
+	width: 100%;
+	/*background: url('https://gtacity.cybricode.com/Projet1/step1/assets/images/personnages/back.jpg');*/
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+  }
+  
+  .background-with-overlay::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* Couleur noire à 50% d'opacité */
+  }
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+	left: 0%;
+	top: 0%;
+}
+
+#wrapper .h1 {
+	color: white;
+	font-family: 'Montserrat Black';
+	font-size: 3.6rem;
+	text-align: center;
+	text-shadow: black 0px 3px 40px;
+	text-transform: uppercase;
+}
+
+#wrapper .h2 {
+	color: #9b4551;
+	font-family: 'Montserrat ExtraBold';
+	font-size: 2rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#wrapper .h3 {
+	color: white;
+	font-family: 'Montserrat ExtraBold';
+	font-size: 1.5rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#wrapper .h4 {
+    color: #ff0000;
+	font-family: 'Montserrat Black';
+	font-size: 3.5rem;
+	letter-spacing: .2rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#wrapper #killer {
+	color: #ff0000;
+	font-family: 'Montserrat Black';
+	font-size: 2.2rem;
+}
+
+.die, .call {
+	position: relative;
+	min-height: 6vh;
+	padding-left: .8vw;
+	padding-right: .8vw;
+	font-size: 1.5rem;
+	font-family: 'Montserrat ExtraBold';
+	color: white;
+	background: #881724;
+	border: none;
+	outline: none;
+	border-radius: 6px;
+	transition: .4s;
+	margin-right: 20px;
+	text-align: center;
+}
+
+.die:hover {
+	color: #881724;
+	background: white;
+}
+
+#wrapper #modal.disabled {
+	pointer-events: none;
+	opacity: .8;
+}  
+.neon-color {
+    text-shadow: 0px 0px 10px black;
+}
+
+.range-labels {
+    pointer-events: none;
+  }

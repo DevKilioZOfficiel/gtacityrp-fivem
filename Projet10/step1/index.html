@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://use.fontawesome.com/1cc3e41cac.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+        <script>
+          tailwind.config = {
+            theme: {
+              screens: {
+                'sm': '640px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1536px',
+                '3xl': '1924px',
+              },
+              extend: {
+                colors: {
+                  'neon-color': '#1092ee',
+                  'gtacity-bleu-nuit': '#282434',
+                  'gtacity-bleu-nuit2': '#271950',
+                  'gtacity-bleu-corporate': '#005FA5',
+                  'gtacity-bleu-corporate-locked': 'rgb(0 95 165 / 30%)',
+                  'gtacity-bleu-corporate2': '#00487D',
+                  'gtacity-bleu-corporate2-locked': 'rgb(0 72 125 / 30%)',
+                  'gtacity-bleu-tiers': '#0B0B4D',
+                  'gtacity-bleu-tiers2': '#191970',
+                  'gtacity-selected-profile': '#5fa8df',
+                  'gtacity-vip-profile-head': '#f6b93b',
+                  'gtacity-vip-profile-head-locked': 'rgb(246 185 59 / 30%)',
+                  'gtacity-vip-profile': '#fdcb6e',
+                  'gtacity-vip-profile-selected': '#dabb0b',
+                  'gtacity-bleu1': 'rgb(96,96,138)',
+                  'gtacity-bleu2': 'rgb(20,33,50)',
+                }
+             }
+            }
+        }
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/style.css?v=1004">
+  </head>
+  <body id="wrapper" class="bg-fixed background-with-overlay">
+      <div class="flex justify-center items-center mx-auto px-8 h-[100vh]">
+
+              <!-- Modal -->
+    <div class="relative z-10 hidden" aria-labelledby="modal-title" id="modal" role="dialog" aria-modal="true">
+      <!--
+        Background backdrop, show/hide based on modal state.
+    
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <!--
+            Modal panel, show/hide based on modal state.
+    
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+          <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <form>
+            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Envoyer les informations aux urgences</h3>
+                <div class="grid grid-cols-4">
+                  <div class="col-span-4 mt-2">
+                    <label>Seriez-vous en mesure de serrer la main du secouriste s'il vous le demandait ?</label>
+                    <select class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" id="question1">
+                      <option>Oui</option>
+                      <option>Non</option>
+                      <option>Je ne sais pas</option>
+                    </select>
+                  </div>
+                  <div class="col-span-4 mt-2">
+                    <label>Quel est le rythme de votre respiration ?</label>
+                    <select class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" id="question2">
+                      <option>Lente</option>
+                      <option selected>Normale</option>
+                      <option>Rapide</option>
+                      <option>Absente</option>
+                    </select>
+                  </div>
+                  <div class="col-span-4 mt-2">
+                    <label>Quel est le rythme de votre pouls ?</label>
+                    <select class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" id="question3">
+                      <option>Lente</option>
+                      <option selected>Normale</option>
+                      <option>Rapide</option>
+                      <option>Absente</option>
+                    </select>
+                  </div>
+                  <div class="col-span-4 mt-2 mb-2">
+                    <label>De quoi souffrez-vous à première vue ?</label>
+                    <select multiple="multiple" class="border w-full rounded-lg cursor-pointer focus:outline-none z-10" id="question4">
+                      <option>Aucune blessure</option>
+                      <option>Égratignures</option>
+                      <option>Contusions ou plaies ouvertes</option>
+                      <option>Coupures</option>
+                      <option>Morsures</option>
+                      <option>Brûlures</option>
+                      <option>Fracture</option>
+                      <option>Plaie par arme à feu</option>
+                      <option>Perforation par un objet tranchant</option>
+                      <option>Coup important porté par un objet</option>
+                      <option>Lacération ou amputation</option>
+                      <option>Autre</option>
+                    </select>
+                  </div>
+                  <div class="col-span-4 mt-2 mb-2" id="autre">
+                    <label>Autre (Si autre, alors détaillez ci-dessous)</label>
+                    <textarea class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" id="question4_autre"></textarea>
+                  </div>
+                  <div class="col-span-4 mt-2">
+                    <label>Détaillez brièvement l'état et la position de la blessure</label>
+                    <input class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" id="question5">
+                  </div>
+                  <div class="col-span-4 mt-2 mb-12">
+                    <label>Sur une échelle de 0 à 10, à quel point votre cas est-il grave ?</label>
+                    <div class="relative mb-5">
+                      <input id="question6" type="range" value="0" min="0" max="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                      <div class="range-labels absolute top-[25px] left-0 w-full flex justify-between text-xs text-gray-500" style="width: 100%">
+                        <span>0</span>
+                        <span></span>
+                        <span>2</span>
+                        <span></span>
+                        <span>4</span>
+                        <span></span>
+                        <span>6</span>
+                        <span></span>
+                        <span>8</span>
+                        <span></span>
+                        <span>10</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button id="send_comment_to_emergency" type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Envoyer les informations</button>
+              <button id="cancel-modal-button" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Retour</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+        <div class="grid grid-cols-5 gap-4 justify-center items-center">
+          <div class="col-span-5 justify-center items-center">
+            <!--<h2 class="h2"></h2>-->
+            <h1 class="h1" class="uppercase neon-color">Vous êtes à terre</h1>
+            <img class="mx-auto m-5 w-[150px] h-[150px]" src="https://cdn-icons-png.flaticon.com/512/855/855016.png" draggable="false">
+            <h3 class="h3"><span class="neon-color">Tué par</span><br><span id="killer" class="neon-color">Mateo MROZEK</span></h3>
+            <h4 class="h4 neon-color"id="time">00:00</h4>
+          </div>
+          <div class="col-span-2">
+            <button id="accept_to_die" class="die uppercase w-full"><i class="fa-solid fa-skull"></i>&nbsp;&nbsp;Mourir</button>
+          </div>
+          <div class="col-span-2">
+            <button id="call_emergency" class="call bg-gtacity-bleu2 hover:bg-gtacity-bleu-corporate2 uppercase w-full"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;Appeler les urgences</button>
+          </div>
+          <div class="col-span-1">
+            <button id="open-modal-button" class="call bg-gtacity-bleu2 hover:bg-gtacity-bleu-corporate2 uppercase w-full"><i class="fa-solid fa-comments"></i></button>
+          </div>
+        </div>
+      </div>
+
+  </body>
+</html>
+
+
+    <script>
+      // Sélectionnez le bouton pour ouvrir le modal
+    const openModalButton = document.querySelector("#open-modal-button");
+    
+    // Sélectionnez le modal
+    const modal = document.querySelector("#modal");
+    
+    // Sélectionnez le fond d'écran du modal
+    const backdrop = document.querySelector(".bg-gray-500");
+    
+    // Fonction pour ouvrir le modal
+    function openModal() {
+      modal.classList.remove("opacity-0", "translate-y-4", "sm:translate-y-0", "sm:scale-95");
+      modal.classList.add("opacity-100", "translate-y-0", "sm:scale-100", "contents");
+      backdrop.classList.remove("opacity-0");
+      backdrop.classList.add("opacity-100");
+      modal.setAttribute("aria-hidden", "false");
+      modal.setAttribute("tabindex", "0");
+      document.getElementById('modal').classList.remove('hidden');
+    }
+    
+    // Fonction pour fermer le modal
+    function closeModal() {
+      modal.classList.remove("opacity-100", "translate-y-0", "sm:scale-100", "contents");
+      modal.classList.add("opacity-0", "translate-y-4", "sm:translate-y-0", "sm:scale-95");
+      backdrop.classList.remove("opacity-100");
+      backdrop.classList.add("opacity-0");
+      modal.setAttribute("aria-hidden", "true");
+      modal.setAttribute("tabindex", "-1");
+      document.getElementById('modal').classList.add('hidden');
+    }
+    
+    // Ajoutez un gestionnaire d'événements pour le bouton d'ouverture du modal
+    openModalButton.addEventListener("click", openModal);
+    
+    // Ajoutez un gestionnaire d'événements pour le bouton d'annulation dans le modal
+    const cancelButton = document.querySelector("#cancel-modal-button");
+    cancelButton.addEventListener("click", closeModal);
+    
+    // Ajoutez un gestionnaire d'événements pour le fond d'écran du modal
+    backdrop.addEventListener("click", closeModal);
+
+var settings = {maxItems: 5};
+new TomSelect('#question4',settings);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const selectQuestion4 = document.getElementById('question4');
+    const divAutre = document.getElementById('autre');
+    const inputQuestion4Autre = document.getElementById('question4_autre');
+
+    // Cacher le champ "Autre" au chargement de la page
+    divAutre.classList.add('hidden');
+
+    // Ajouter un écouteur d'événement pour détecter les changements de sélection dans le menu déroulant
+    selectQuestion4.addEventListener('change', () => {
+      const selectedOptions = Array.from(selectQuestion4.selectedOptions).map(option => option.value);
+      const isAutreSelected = selectedOptions.includes('Autre');
+
+      if (isAutreSelected) {
+        // Afficher le champ "Autre" si l'option "Autre" est sélectionnée
+        divAutre.classList.remove('hidden');
+      } else {
+        // Sinon, cacher le champ "Autre" et vider son contenu
+        divAutre.classList.add('hidden');
+        inputQuestion4Autre.value = '';
+      }
+    });
+
+    // Ajouter un écouteur d'événement pour détecter les changements dans le champ texte "Autre"
+    inputQuestion4Autre.addEventListener('input', () => {
+      const selectedOptions = Array.from(selectQuestion4.selectedOptions).map(option => option.value);
+      const isAutreSelected = selectedOptions.includes('Autre');
+
+      if (!isAutreSelected) {
+        // Vider le champ texte "Autre" si l'option "Autre" n'est pas sélectionnée
+        inputQuestion4Autre.value = '';
+      }
+    });
+  });
+    </script>

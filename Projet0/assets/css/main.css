@@ -1,0 +1,6 @@
+/* Vos styles Tailwind CSS ici */
+
+/* Styles pour l'effet néon sur les bordures des divs */
+  .neon-color {
+    box-shadow: 0px 0px 35px #1092ee;
+  }

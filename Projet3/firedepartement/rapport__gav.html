@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/new_styles.css" > 
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link href="assets/select2.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            screens: {
+              'sm': '640px',
+              'md': '768px',
+              'lg': '1024px',
+              'xl': '1560px',
+              '2xl': '1760px',
+            },
+            extend: {
+              colors: {
+                'background': 'rgb(96,96,138)',
+                'neon-color': '#1092ee',
+                'gtacity-bleu-nuit': '#282434',
+                'gtacity-bleu-nuit2': '#271950',
+                'gtacity-bleu-corporate': '#005FA5',
+                'gtacity-bleu-corporate-locked': 'rgb(0 95 165 / 30%)',
+                'gtacity-bleu-corporate2': '#00487D',
+                'gtacity-bleu-corporate2-locked': 'rgb(0 72 125 / 30%)',
+                'gtacity-bleu-tiers': '#0B0B4D',
+                'gtacity-bleu-tiers2': '#191970',
+                'gtacity-selected-profile': '#5fa8df',
+                'gtacity-vip-profile-head': '#f6b93b',
+                'gtacity-vip-profile-head-locked': 'rgb(246 185 59 / 30%)',
+                'gtacity-vip-profile': '#fdcb6e',
+                'gtacity-vip-profile-selected': '#dabb0b',
+                'gtacity-bleu1': 'rgb(96,96,138)',
+                'gtacity-bleu2': 'rgb(20,33,50)',
+              }
+           }
+          }
+      }
+      </script>
+    
+    <script src="assets/fontawesome/v6.4.0/all.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</head>
+<body class="pt-[52px] 2xl:pt-[89px]">
+    
+    <div class="header flex items-center justify-between p-4  border-yellow-400 bg-opacity-10 backdrop-blur-md">
+        <img src="assets/img/icon.png" class="logo w-24 h-24" alt="LA City Logo">
+    
+        <div class="nav hidden lg:flex space-x-4 mb-6">
+            <!-- DESKTOP ACTIVE: btn-active (retirer btn-active si non activé)-->
+            <a href="index.html" class="btn">Accueil</a>
+            <a href="rooter.html" class="btn">MDT</a>
+            <a href="citoyens.html" class="btn">Fiche patients</a>
+            <a href="rapports.html" class="btn btn-active">Rapports</a>
+            <a href="recherches.html" class="btn">Recherches</a>
+            <a href="map.html" class="btn">Map</a>
+        </div>
+    
+        <div class="motto text-right ml-auto">
+            <p class="title">
+                LA Police Department<br>
+                <span class="sub-title">“To Protect and To Serve”</span>
+            </p>
+        </div>
+    
+        <div class="lg:hidden flex">
+            <button id="mobile-menu-button" class="btn text-white">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div id="mobile-menu" class="lg:hidden hidden mt-12 bg-[#2c3847] rounded-xl">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- EXEMPLE ACTIVE MOBILE:
+            bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium
+
+            EXEMPLE NON ACTIVE MOBILE:
+            text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium
+            -->
+            <a href="index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Accueil</a>
+            <a href="rooter.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Rooter</a>
+            <a href="citoyens.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Fiches patients</a>
+            <a href="rapports.html" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium">Rapports</a>
+            <a href="recherches.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Recherches</a>
+            <a href="map.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Map</a>
+          </div>
+    </div>
+
+    <div class="account pt-5">
+        <p class="welcome">Bienvenue, <span class="username">John Doe</span></p>
+        
+        <div class="actions">
+            <button class="profil-btn">Mon profil</button>
+            <button class="logout-btn">Déconnexion</button>
+        </div>
+    </div>
+
+    <main class="overflow-auto w-full">
+        <div class="modal flex fixed bottom-[170px] right-[90px] 2xl:bottom-[220px] 2xl:right-[150px] gtacity-notification-container gtacity-notification-container-content bottom-0 overflow-auto z-10 hidden mr-[20px] max-h-[80%]" id="notifications">
+            <div class="flex items-center justify-between">
+                <h2 class="w-full text-md text-white font-bold mb-1 mt-1 text-center">Notifications</h2>
+                <span class="absolute inline right-[13px] modal-close"><i class="fa-solid fa-xmark fa-xl" style="color: #ff0000;"></i></span>
+            </div>    
+
+            <div class="overflow-auto" id="notifications-list">
+                <!-- EXEMPLE DE NOTIFICATION -->
+                <div class="mb-2 gtacity-notification-content">
+                    <div class="p-5 text-white relative flex w-full h-full flex-col rounded-xl shadow-md">
+                        <h5 class="mb-2 block text-[12px] font-bold text-white">
+                            <span id="user" class="opacity-50 text-[16px]">Direction</span>
+                            <span id="date" class="opacity-50 text-[14px] text-right right-date">13:45 03 août 2023</span>
+                        </h5>
+                        <p id="content" class="gtacity-content text-[11px]">
+                            Lorem ipsum dolor sit amet consectetur. Urna odio lectus cursus cursus. In at id gravida at senectus. Suspendisse nulla mattis consequat netus pellentesque feugiat in dignissim. Sem tempus neque nec egestas malesuada tempus sollicitudin et scelerisque. Commodo eget viverra convallis dignissim egestas.
+                        </p>
+                    </div>
+                </div>
+                <!-- FIN EXEMPLE DE NOTIFICATION -->
+            </div>
+        </div>
+
+        <div class="fixed bottom-[70px] right-[90px] 2xl:bottom-[120px] 2xl:right-[150px] text-white px-4 py-2 rounded-md modal-open" data-modal-target="notifications">
+            <div class="gtacity-notifications-bell-icon">
+                <div class="flex items-center justify-center bg-no-repeat bg-center bg-cover p-[20px] m-[10px]" style="background-image: url('assets/img/bell.png');">
+                    <div class="relative">
+                      <div id="count_list" style="/* font-weight: 700; */" class="gtacity-notification-count absolute right-0 text-white rounded-full w-[20px] h-[20px]">
+                        1
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto 2xl:py-6 sm:px-6 lg:px-8 2xl:pt-[55px]">
+          
+            <div class="mx-4 grid grid-cols-12 gap-4">
+                <div class="col-span-12 mb-2">
+                    <div class="flex justify-center text-center">
+                        <h2 class="flex font-extrabold text-xl text-white">
+                            <svg class="mr-2 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="29" viewBox="0 0 24 29" fill="#FFFFFF">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0.434082V7.46702L12 7.54356V7.54357V7.54358V7.54359C11.9999 8.14007 11.9998 8.71975 12.0641 9.19786C12.1365 9.73687 12.3131 10.3519 12.824 10.8628C13.3349 11.3737 13.95 11.5503 14.489 11.6228C14.9671 11.687 15.5468 11.6869 16.1432 11.6868H16.1433H16.1433H16.1433L16.2198 11.6868H23.2527V20.1263C23.2527 24.1048 23.2527 26.094 22.0168 27.3299C20.7809 28.5659 18.7916 28.5659 14.8132 28.5659H9.18685C5.20841 28.5659 3.2192 28.5659 1.98326 27.3299C0.747314 26.094 0.747314 24.1048 0.747314 20.1263V8.87362C0.747314 4.89518 0.747314 2.90596 1.98326 1.67002C3.2192 0.434082 5.20841 0.434082 9.18685 0.434082H12ZM14.8132 0.440582V7.46702C14.8132 8.16986 14.8162 8.55549 14.8522 8.82301L14.8536 8.83325L14.8638 8.83466C15.1313 8.87063 15.517 8.87361 16.2198 8.87361H23.2462C23.2319 8.2946 23.1859 7.91145 23.0386 7.55573C22.8245 7.03875 22.4179 6.63221 21.6048 5.81912L21.6048 5.81911L17.8677 2.082C17.0546 1.26891 16.6481 0.862363 16.1311 0.648222C15.7754 0.500879 15.3922 0.454918 14.8132 0.440582ZM6.37367 15.9065C6.37367 15.1297 7.00342 14.5 7.78026 14.5L16.2198 14.5C16.9966 14.5 17.6264 15.1297 17.6264 15.9065C17.6264 16.6834 16.9966 17.3131 16.2198 17.3131L7.78026 17.3131C7.00342 17.3131 6.37367 16.6834 6.37367 15.9065ZM7.78026 20.1263C7.00342 20.1263 6.37367 20.7561 6.37367 21.5329C6.37367 22.3098 7.00342 22.9395 7.78026 22.9395H13.4066C14.1835 22.9395 14.8132 22.3098 14.8132 21.5329C14.8132 20.7561 14.1835 20.1263 13.4066 20.1263H7.78026Z" fill="white"/>
+                            </svg>
+                            Choisir le type de rapport
+                        </h2>
+                    </div>
+                    <div class="flex justify-center text-center mt-5">
+
+                        <span class="dropdown-toggle w-80 dropdown-rapport text-sm p-4 font-bold uppercase flex justify-between">
+                            Rapport de garde à vue
+                            <svg class="gtacity-svg-dropdown mt-[5px]" xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10" fill="none">
+                                <path d="M5.42655 9.37847L0.810874 2.78464C0.164586 1.86137 0.825095 0.592759 1.95209 0.592759L10.5313 0.59276C11.6583 0.59276 12.3188 1.86137 11.6725 2.78464L7.05686 9.37846C6.66074 9.94435 5.82267 9.94435 5.42655 9.37847Z" fill="white"/>
+                            </svg>
+                        </span>
+                            
+                        <div class="absolute mb-5 mt-10 w-62 rounded-md shadow-lg bg-[#334A69] ring-1 ring-black ring-opacity-5 hidden dropdown-menu z-10">
+                            <ul class="py-1 rounded-xl" role="menu" aria-orientation="vertical">
+                              <!-- Mettez ici les options du dropdown -->
+                              <li><a href="rapport__arrestation.html"><span class="block px-4 py-2 text-sm text-white hover:text-[#FFCB04] font-bold uppercase gtacity-unity-selector" role="menuitem">Rapport d'arrestation</span></a></li>
+                              <li><a href="rapport__gav.html"><span class="block px-4 py-2 text-sm text-[#FFCB04] hover:text-[#FFCB04] font-bold uppercase gtacity-unity-selector" role="menuitem">Rapport de garde à vue</span></a></li>
+                              <li><a href="rapport__saisie.html"><span class="block px-4 py-2 text-sm text-white hover:text-[#FFCB04] font-bold uppercase gtacity-unity-selector" role="menuitem">Rapport de saisie</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[#FFCB04] w-full gtacity-home-item overflow-hidden sm:shadow-lg my-5 mb-8 mt-[15px] 2xl:mt-[51px]">
+                        <div class="bg-[#FFCB04] mb-3 mt-3 flex justify-center text-center">
+                            <h1 class="flex font-extrabold text-2xl text-black">
+                                <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="29" viewBox="0 0 24 29" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0.434082V7.46702L12 7.54356V7.54357V7.54358V7.54359C11.9999 8.14007 11.9998 8.71975 12.0641 9.19786C12.1365 9.73687 12.3131 10.3519 12.824 10.8628C13.3349 11.3737 13.95 11.5503 14.489 11.6228C14.9671 11.687 15.5468 11.6869 16.1432 11.6868H16.1433H16.1433H16.1433L16.2198 11.6868H23.2527V20.1263C23.2527 24.1048 23.2527 26.094 22.0168 27.3299C20.7809 28.5659 18.7916 28.5659 14.8132 28.5659H9.18685C5.20841 28.5659 3.2192 28.5659 1.98326 27.3299C0.747314 26.094 0.747314 24.1048 0.747314 20.1263V8.87362C0.747314 4.89518 0.747314 2.90596 1.98326 1.67002C3.2192 0.434082 5.20841 0.434082 9.18685 0.434082H12ZM14.8132 0.440582V7.46702C14.8132 8.16986 14.8162 8.55549 14.8522 8.82301L14.8536 8.83325L14.8638 8.83466C15.1313 8.87063 15.517 8.87361 16.2198 8.87361H23.2462C23.2319 8.2946 23.1859 7.91145 23.0386 7.55573C22.8245 7.03875 22.4179 6.63221 21.6048 5.81912L21.6048 5.81911L17.8677 2.082C17.0546 1.26891 16.6481 0.862363 16.1311 0.648222C15.7754 0.500879 15.3922 0.454918 14.8132 0.440582ZM6.37367 15.9065C6.37367 15.1297 7.00342 14.5 7.78026 14.5L16.2198 14.5C16.9966 14.5 17.6264 15.1297 17.6264 15.9065C17.6264 16.6834 16.9966 17.3131 16.2198 17.3131L7.78026 17.3131C7.00342 17.3131 6.37367 16.6834 6.37367 15.9065ZM7.78026 20.1263C7.00342 20.1263 6.37367 20.7561 6.37367 21.5329C6.37367 22.3098 7.00342 22.9395 7.78026 22.9395H13.4066C14.1835 22.9395 14.8132 22.3098 14.8132 21.5329C14.8132 20.7561 14.1835 20.1263 13.4066 20.1263H7.78026Z" fill="black"/>
+                                  </svg>
+                                Rapport de garde à vue</h1>
+                        </div>
+                        <div class="grid grid-cols-12 gap-4 gtacity-item-table">
+                            <div class="col-span-12 w-[100%] gtacity-border-left-negative gtacity-item-table overflow-auto max-h-[40vh] min-h-[20vh] 2xl:max-h-[45vh] 2xl:min-h-[20vh]">
+
+                                <div class="mt-[1rem] bg-[#1F3147] mx-8 rounded-xl mb-10">
+                                    <div class="grid grid-cols-1 p-5">
+                                        <div class="col-span-1 mx-4">
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Lier un patient à la fiche :
+                                                </label>
+                                                <input type="text" class="min-w-0 w-[100vw] flex-auto gtacity-rapport-input h-[40px] text-left font-bold top-[-10px] p-4 relative" placeholder="Pour lier un patient à cette fiche">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Date et heure de début de la GAV :
+                                                </label>
+                                                <input type="datetime-local" class="min-w-0 flex-auto gtacity-rapport-input h-[40px] text-left font-bold top-[-10px] p-4 relative" placeholder="Pour lier un officier en charge">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Lier un officier en charge :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-rapport-input h-[40px] text-left font-bold top-[-10px] p-4 relative" placeholder="Pour lier un officier en charge">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Photo de l’individu :
+                                                </label>
+                                                <input type="text" readonly id="img" class="min-w-0 flex-auto gtacity-rapport-input h-[40px] text-left font-bold top-[-10px] p-4 relative" placeholder="Prendre une photo de l’individu">
+                                                <input type="file" id="img_file" class="hidden">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Lier un rapport de saisie :
+                                                </label>
+                                                <select type="text" class="gtacity-saisie-js min-w-0 flex-auto gtacity-rapport-input h-[50px] text-left font-bold top-[-10px] p-4 relative" placeholder="Pour lier un rapport de saisie">
+                                                    <option selected disabled>Pour lier un rapport de saisie</option>
+                                                    <!-- BASE DE DONNEE ICI-->
+                                                    <option value="1">Exemple</option>
+                                                    <!-- FIN BASE DE DONNEE DES SAISIE-->
+                                                </select>
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Qualifications de l’infraction :
+                                                </label>
+                                                <input type="text" class="min-w-0 flex-auto gtacity-rapport-input h-[40px] text-left font-bold top-[-10px] p-4 relative" placeholder="Qualifications de l’infraction">
+                                            </div>
+                                            <div class="mx-auto mt-2 flex gap-x-4">
+                                                <label class="flex-none font-bold inline">
+                                                    Rapport de l’arrestation :
+                                                </label>
+                                                <textarea rows="10" class="w-full gtacity-rapport-input h-min-[100px] text-left font-bold top-[-10px] p-4 relative" placeholder="Rapport détaillé menant à l’arrestation"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-[#7a8a9e] rounded-[9.729px] m-4 p-4 bottom-0 text-center font-bold">
+                                            <i class="fa-solid fa-plus"></i> Créer le rapport
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+      </main>
+</body>
+<script>
+$(".gtacity-saisie-js").select2({
+    language: "fr"
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+    const imgInput = document.getElementById('img');
+    const imgFileInput = document.getElementById('img_file');
+
+    imgInput.addEventListener('click', function () {
+      imgFileInput.click();
+    });
+
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function() {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Fermer le menu mobile lors du clic en dehors du menu
+        window.addEventListener("click", function(event) {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add("hidden");
+            }
+        });
+
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+      dropdownToggles.forEach((toggle) => {
+        const dropdownMenu = toggle.nextElementSibling;
+  
+        toggle.addEventListener('click', function () {
+          if (dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.remove('hidden');
+            createPopper(toggle, dropdownMenu, {
+              placement: 'bottom-start',
+            });
+          } else {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+  
+        document.addEventListener('click', function (event) {
+          if (!toggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+      });
+
+      const modalOpenButtons = document.querySelectorAll('.modal-open');
+const modalCloseButtons = document.querySelectorAll('.modal-close');
+
+modalOpenButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    const modalId = button.getAttribute('data-modal-target');
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  });
+});
+
+modalCloseButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    const modal = button.closest('.modal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  });
+});
+
+// Ferme le modal lorsque l'utilisateur clique en dehors du modal
+document.addEventListener('click', function (event) {
+  modalOpenButtons.forEach((button) => {
+    const modalId = button.getAttribute('data-modal-target');
+    const modal = document.getElementById(modalId);
+    if (!modal.contains(event.target) && !button.contains(event.target)) {
+      modal.classList.add('hidden');
+    }
+  });
+});
+});
+  </script>
+</html>

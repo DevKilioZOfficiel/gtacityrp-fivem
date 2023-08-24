@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/notification_call.css" > 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="assets/fontawesome/v6.4.0/all.js"></script>
+</head>
+<body>
+    <div class="grid grid-cols-12 gap-4" id="communication_interne">
+        <div class="col-span-3 mt-4 mx-4 w-full mb-5">
+            <div class="relative flex w-full h-full flex-col rounded-xl gtacity-dispatch bg-clip-border text-gray-700 shadow-md">
+                <div class="p-3">
+                    <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+                        <span class="text-sm font-bold gtacity-dispatch-number" id="id_call">#1</span>
+                        <span class="text-black text-sm font-bold gtacity-dispatch-number2" id="number_call">10-31</span>
+                        <span id="type_call">Tirs d’arme à feu</span>
+                    </h5>
+                    <p class="block font-sans text-white text-base font-semibold leading-relaxed text-inherit antialiased">
+                        <i class="fa-solid fa-stopwatch"></i> <span id="time_call">Maintenant</span><br>
+                        <i class="fa-solid fa-map-location-dot"></i> <span id="localisation_call"> Vespucci Boulevard</span>
+                    </p>
+                    <div class="grid grid-cols-1">
+                        <div class="flex pt-3">
+                            <button type="button" id="accept_call" class="m-2 inline gtacity-dispatch-button font-bold text-white">Prendre l'appel</button>
+                            <button type="button" id="refuse_call" class="m-2 inline gtacity-dispatch-button-refuse font-bold text-white">Refuser l'appel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

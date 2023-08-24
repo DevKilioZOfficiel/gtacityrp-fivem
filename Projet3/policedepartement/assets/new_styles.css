@@ -1,0 +1,603 @@
+/* Aucune optimisation */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #202a38 transparent;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #202a38;
+    border-radius: 10px;
+    border: 3px none #ffffff;
+  }
+
+html {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: transparent; /* Assurez-vous que le fond est transparent */
+    overflow: hidden;
+    &::after {
+        content: "";
+        background-image: url("img/mdt.png");
+        background-size: 100% 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Permet au contenu de rester interactif */
+        z-index: -1; /* pour placer l'élément en dessous du contenu */
+    }
+}
+
+body{
+    margin: 0;
+    background-repeat: no-repeat;
+    color:#FFF;
+    font-family: Montserrat;
+    padding-left: 4.5%;
+    padding-right: 5%;
+    position: relative;
+    z-index: -1;
+
+    &::after {
+        content: "";
+        background-image: url("img/mdt2.png");
+        background-size: 100% 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Permet au contenu de rester interactif */
+        z-index: -1; /* pour placer l'élément en dessous du contenu */
+    }
+}
+
+.header{
+    display:flex;
+    width: 100%;
+    height: 84px;
+    flex-shrink: 0;
+    border-bottom: 10px solid #FFCB04;
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+}
+
+.logo{
+    margin-left: 20px;
+    margin-top: 80px;
+    flex-shrink: 0;
+}
+
+.nav{
+    display: flex;
+    margin-top: 32px;
+    margin-left: 41px;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.btn{
+    color:#FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.btn-active::after {
+    content: "";
+    display: flex;
+    position: relative;
+    top: 18px;
+    left: 35%;
+    width: 18px;
+    height: 6px;
+    background-color: #FFCB04;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    box-shadow: -2px 16px 11px 14px #FFCB04;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.motto{
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: 12px;
+    float: right;
+}
+
+.title{
+    margin-top: 10px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.sub-title{
+    float: right;
+    width: 176px;
+    height: 22px;
+    flex-shrink: 0;
+    font-family: Caveat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.welcome{
+    padding-right: 11px;
+    text-align: right;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.username{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.actions{
+    display: inline-flex;
+    float: right;
+    width: 272px;
+    padding-right: 0px;
+    align-items: flex-end;
+    align-content: flex-end;
+    gap: 7px 14px;
+    flex-wrap: wrap;
+}
+
+.profil-btn{
+    padding: 4.04px 19.528px;
+    justify-content: center;
+    align-items: center;
+    gap: 6.734px;
+    background: #FFCB04;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 13.467px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    border:#FFCB04;
+    border-radius: 10px;
+}
+
+
+.logout-btn{
+    color: #FFF;
+    padding: 4.04px 19.528px;
+    justify-content: center;
+    align-items: center;
+    gap: 6.734px;
+    background: #ED1B22;
+    font-family: Montserrat;
+    font-size: 13.467px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    border:#ED1B22;
+    border-radius: 10px;
+}
+
+.gtacity-menu {
+    position: absolute;
+}
+.gtacity-rooter-title {
+    position: relative;
+    top: -25px;
+    z-index: -1;
+}
+
+.gtacity-table {
+    margin-top: 25px;
+}
+
+.gtacity-rounded {
+    border-radius: 0px 10px 10px 10px;
+}
+
+.gtacity-borders-primary {
+    border: 7px solid #FFCB04;
+    background: #334c6a;
+}
+
+.gtacity-borders {
+    border: 2px solid #FFCB04;
+}
+
+.gtacity-item {
+    border-radius: 0px 10px 10px 10px;
+    border: 7px solid #FFCB04;
+    background: #1F3147;
+}
+
+.gtacity-item-table {
+    background: #1F3147;
+}
+
+.gtacity-matricule {
+    padding: 2px 5px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+    background: rgba(255, 203, 4, 0.25);
+}
+
+.gtacity-border-left {
+    margin-left: 15px;
+    border-left: 7px solid #FFCB04;
+}
+.gtacity-border-left2 {
+    margin-left: 0px;
+    border-left: 2px solid #FFCB04;
+}
+.gtacity-border-left-negative {
+    margin-left: -15px;
+    border-left: 2px solid #FFCB04;
+}
+
+.gtacity-dispatch {
+    border-radius: 7.5px;
+    background: linear-gradient(90deg, #334A69 0%, #334A69 57.29%, #1A2F4D 90.63%);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.gtacity-dispatch-number {
+    background-color: #142132;
+    border-radius: 25px;
+    padding: 5px;
+}
+.gtacity-dispatch-number2 {
+    background-color: #FFCB04;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.gtacity-dispatch-button {
+    font-size: 12px!important;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 2px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1.25px solid rgba(55, 217, 208, 0.25);
+    background: #24958F!important;
+}
+
+.gtacity-dispatch-button-refuse {
+    font-size: 12px!important;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 2px;
+    width: 40%;
+    border-radius: 5px;
+    border: 1.25px solid rgba(55, 217, 208, 0.25);
+    background: rgb(239 68 68)!important;
+}
+
+.gtacity-communications {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 22.798px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.gtacity-communication-left {
+    border-radius: 0px 7.5px 7.5px 7.5px;
+    background: rgba(55, 217, 208, 0.25);
+    font-size: 14px!important;
+}
+.gtacity-communication-right {
+    border-radius: 7.5px 0px 7.5px 7.5px;
+    background: rgba(55, 217, 208, 0.50);
+    font-size: 14px!important;
+}
+
+.right-date {
+    float:right;
+}
+
+.gtacity-content {
+    font-size: 12px;
+}
+
+.gtacity-unity-selector {
+    border-bottom: 1px solid #FFCB04;
+}
+
+.gtacity-unity-selected {
+    color: #FFCB04;
+}
+
+.gtacity-svg-dropdown {
+    float: right;
+    margin-top: 10px;
+}
+
+.gtacity-input {
+    border-radius: 10px;
+    background: rgba(33, 28, 28, 0.35);
+    &::placeholder {
+        opacity: 0.25;
+    }
+}
+
+.gtacity-officers-list {
+    border-radius: 10px;
+    background: #202A38;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.gtacity-officer-icon {
+    border-radius: 35px;
+    background: #1E1E1E;
+}
+
+.gtacity-acceptcall  {
+    border-radius: 5px;
+    border: 2px solid rgba(55, 217, 208, 0.25);
+    background: #24958F!important;
+    padding: 1rem;
+    width: 25%;
+}
+.gtacity-removecall  {
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: #ED1B22!important;
+    padding: 1rem;
+    width: 25%;
+}
+.gtacity-cancel-btn {
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: #C4C4C4!important;
+    padding: 1rem;
+    width: 25%;
+}
+
+.modal-border {
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    background: #1F3147;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.25);
+}
+
+.gtacity-localisation {
+    fill: #ED1B22;
+    stroke-width: 1.675px;
+    stroke: rgba(255, 255, 255, 0.25);
+}
+
+.gtacity-notifications {
+    border-radius: 15px 15px 0px 15px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    background: #299891;
+}
+
+.gtacity-notifications-bell-icon {
+    border-radius: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    background: #299891;
+}
+
+.gtacity-notification-count {
+    background: linear-gradient(285deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), linear-gradient(278deg, #ED1B22 0%, #F1545A 100%);
+    top: -23px;
+    display: inline-flex;
+    left: 0px;
+    font-size: 9px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: 700;
+    transform: rotate(7.382deg);
+}
+
+.gtacity-bell {
+    background-image: url("../assets/img/bell.png");
+}
+
+.gtacity-notification-container {
+    border-radius: 15px 15px 0px 15px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    background: #299891;
+}
+.gtacity-notification-container-content {
+    display: flex;
+    width: 400px;
+    padding: 13px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.gtacity-notification-content {
+    border-radius: 7.5px;
+    background: #1f726d;
+}
+
+.gtacity-home-item {
+    border-radius: 20px;
+    border: 2px solid #FFCB04;
+    background: #273B4A;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.25);
+}
+
+.gtacity-ordre::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    width: 100%;
+    height: 2px;
+    background-color: #FFCB04;
+}
+
+.w-custom {
+   width: calc(100% - 30px);
+}
+
+.gtacity-citizen {
+    border-radius: 9.729px;
+    background: #202A38;
+    box-shadow: 0px 0px 4.864583492279053px 0px rgba(0, 0, 0, 0.25);
+}
+.gtacity-citizen-active {
+    border-radius: 9.729px;
+    background: #202A38;
+    box-shadow: 0px 0px 4.864583492279053px 0px rgba(0, 0, 0, 0.25);
+    border: 2px solid #FFCB04;
+}
+
+.border-citizen::after {
+    width: 0.973px;
+    height: 26.269px;
+    opacity: 0.5;
+    background: #FFF;
+}
+
+.centered-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.gtacity-citizen-input {
+    border-radius: 8.251px;
+    background: rgba(33, 28, 28, 1);
+}
+.gtacity-rapport-input {
+    border-radius: 8.251px;
+    background: rgba(33, 28, 28, 0.35);
+}
+
+.gtacity-permis {
+    border-radius: 5px;
+    border: 1px solid #FFF;
+    opacity: 0.5;
+    background: rgba(33, 28, 28, 0.35);
+}
+
+.gtacity-permis-active {
+    border-radius: 5px;
+    border: 1px solid #FFCB04;
+    background: rgba(33, 28, 28, 0.35);
+}
+
+.centered-icon {
+    transform: translateY(30%);
+}
+
+.unpaid {
+    color: #ff0000;
+}
+.paid {
+    color: #39C6BD;
+}
+
+.dropdown-rapport {
+    border-radius: 9.729px 9.729px 0px 0px;
+    background: rgba(33, 28, 28, 0.35);
+}
+
+.saisie { 
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    gap: 36px;
+}
+.saisie-item {
+    border-radius: 8.251px;
+    background: #202a38;
+}
+.saisie-qte {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+}
+
+.gtacity-saisie-borded::after {
+    content: "";
+    margin-left: 0px;
+    border-left: 2px solid #576575;
+}
+#birthday {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Personnalisation de la flèche du sélecteur de date */
+#birthday::-webkit-calendar-picker-indicator {
+    background: transparent;
+}
+.gtacity-citizen-bg{
+    background: #334C6A;
+}
+
+.gtacity-filter {
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.50);
+    background: #FFCB04;
+}
+
+.gtacity-filtre {
+    border-radius: 8px;
+    border: 1px solid #FFF;
+    background: rgba(33, 28, 28, 0.35);
+    padding: .25rem;
+    margin: .25rem;
+}
+
+.gtacity-filtre-active {
+    border-radius: 8px;
+    border: 1px solid #FFCB04;
+    background: rgba(33, 28, 28, 0.35);
+    padding: .25rem;
+    margin: .25rem;
+}
+
+.gtacity-history-search {
+    border-radius: 10px;
+    border: 2px solid #FFF;
+}
+
+.history-text {
+    left: 15px;
+    top: 14px;
+    background: #142132;
+    width: fit-content;
+    padding: 5px;
+}
+
+.gtacity-search-item {
+    border-radius: 9.729px;
+    background: #202A38;
+    box-shadow: 0px 0px 4.864583492279053px 0px rgba(0, 0, 0, 0.25);
+}
